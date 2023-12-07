@@ -5,8 +5,7 @@ import type { ReactNode } from 'react'
 import { useForm } from "react-hook-form"
 import { useHotkeys } from 'react-hotkeys-hook'
 import { Toaster, toast } from 'react-hot-toast'
-
-import config from '@/inputdata.json'
+import { useFetch } from '@/hooks/fetch'
 
 export default function Home() {
 
@@ -16,15 +15,17 @@ export default function Home() {
     setValue,
     watch,
   } = useForm<any>()
-
+  const { data: template, error: t_error, isLoading: t_loading } = useFetch(`/api/templates/aaa`, { method: 'GET' })
 
   watch((data, { name }) => {
+    if (!template) return
     if (name !== 'result') {
       if (["false", "true"].includes(Object.keys(data).filter(k => k !== 'result').map(k => data[k]).join(''))) {
         setValue('result', '')
       } else {
-        let val = config.format
-        config.inputs.forEach(i => {
+        console.log("val=", template)
+        let val = template.format
+        template.inputs.forEach((i: any) => {
           val = val.replace(i.target_value, !data[i.id] ? "" : i.replace_format.replace('${value}', data[i.id]))
         })
         setValue('result', val)
@@ -41,17 +42,18 @@ export default function Home() {
       toast.success('Copied')
     }
   }
+  if (t_loading) return <>loading...</>
 
   return (
     <main className="flex pt-10 px-16 justify-center w-screen">
       <div className='md:min-w-[768px] md:max-w-[1024px]'>
-        <h1 className='text-2xl py-4 text-center'>{config.title}</h1>
-        <div><View data={config.description} /></div>
+        <h1 className='text-2xl py-4 text-center'>{template.title}</h1>
+        <div><View data={template.description} /></div>
         <div className='flex py-2 justify-start text-sm text-red-500'>*required</div>
         <div className='md:flex gap-8 items-start pb-10'>
           <section className='justify-center px-2 md:w-6/12'>
-            {config.inputs &&
-              config.inputs.map((i, idx) => {
+            {template.inputs &&
+              template.inputs.map((i: any, idx: number) => {
                 return (
                   <InputLine label={i.label} required={i.required} key={i.id}>
                     <div>
@@ -89,7 +91,7 @@ export default function Home() {
             </div>
             <div className='pt-2'>
               <TextArea id='result'
-                placeholder={config.format}
+                placeholder={template.format}
                 register={register}
                 rows={5}
               />
