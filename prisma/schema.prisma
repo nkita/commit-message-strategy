@@ -10,7 +10,43 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// ********************
+//  Template Table
+// ********************
+model GC_Template {
+  id          String   @id
+  title       String
+  description String   @db.Text
+  format      String   @db.Text
+  updated_at  DateTime @default(now())
+  created_at  DateTime @default(now())
+}
 
+model GC_Input {
+  id             String  @id
+  label          String
+  required       Boolean
+  description    String  @db.Text
+  target_value   String
+  replace_format String
+  type_id        String
+  gc_type        GC_Type @relation(fields: [type_id], references: [id])
+}
+
+model GC_Type {
+  id           String        @id
+  label        String
+  item_id      String?
+  gc_type_item GC_TYPE_ITEM? @relation(fields: [item_id], references: [id])
+  GC_Input     GC_Input[]
+}
+
+model GC_TYPE_ITEM {
+  id          String    @id
+  label       String
+  description String    @db.Text
+  GC_Type     GC_Type[]
+}
 
 // ********************
 //  NextAuth configure
