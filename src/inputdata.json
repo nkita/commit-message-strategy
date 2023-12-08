@@ -1,5 +1,5 @@
 {
-    "id": "Conventional-Commits-1.0.0",
+    "id": "cc1.0.0",
     "title": "Conventional Commits 1.0.0",
     "description": "The Conventional Commits specification is a lightweight convention on top of commit messages. \n It provides an easy set of rules for creating an explicit commit history; which makes it easier to write automated tools on top of. This convention dovetails with SemVer, by describing the features, fixes, and breaking changes made in commit messages.please check [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) ",
     "inputs": [
