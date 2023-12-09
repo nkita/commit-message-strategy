@@ -6,8 +6,12 @@ import { useForm } from "react-hook-form"
 import { useHotkeys } from 'react-hotkeys-hook'
 import { Toaster, toast } from 'react-hot-toast'
 import { useFetch } from '@/hooks/fetch'
+import { useParams } from 'next/navigation'
 
 export default function Home() {
+  const params = useParams()
+  const tid = params.id
+  const { data: template, error: t_error, isLoading: t_loading } = useFetch(`/api/templates/${tid}`, { method: 'GET' })
 
   const {
     register,
@@ -15,14 +19,13 @@ export default function Home() {
     setValue,
     watch,
   } = useForm<any>()
-  const { data: template, error: t_error, isLoading: t_loading } = useFetch(`/api/templates/`, { method: 'GET' })
+
   watch((data, { name }) => {
     if (!template) return
     if (name !== 'result') {
       if (["false", "true"].includes(Object.keys(data).filter(k => k !== 'result').map(k => data[k]).join(''))) {
         setValue('result', '')
       } else {
-        console.log("val=", template)
         let val = template.format
         template.input.forEach((i: any) => {
           val = val.replace(i.target_value, !data[i.id] ? "" : i.replace_format.replace('${value}', data[i.id]))
@@ -34,6 +37,7 @@ export default function Home() {
 
   useHotkeys('ctrl+k', () => handleCopyBtn(), { enableOnFormTags: true })
 
+
   const handleCopyBtn = async () => {
     const msg = watch('result')
     if (msg) {
@@ -43,6 +47,7 @@ export default function Home() {
   }
   if (t_loading) return <>loading...</>
   if (!template) return <>No template</>
+
   return (
     <main className="flex pt-10 px-16 justify-center w-screen">
       <div className='md:min-w-[768px] md:max-w-[1024px]'>
@@ -57,7 +62,7 @@ export default function Home() {
                   <InputLine label={i.label} required={i.required} key={i.id}>
                     <div>
                       {i.type.label === "select" &&
-                        <Select id={i.id} items={i.type_items} control={control} placeholder={`Write a ${i.label}.`} autoFocus={idx === 0} />
+                        <Select id={i.id} items={i.typeItem} control={control} placeholder={`Write a ${i.label}.`} autoFocus={idx === 0} />
                       }
                       {i.type.label === "toggle" &&
                         <CheckBox id={i.id} register={register} autoFocus={idx === 0} />

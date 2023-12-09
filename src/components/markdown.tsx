@@ -7,7 +7,7 @@ export const View = ({
 }) => {
     return (
         <div className='markdown'>
-            <Markdown>{data}</Markdown>
+            <Markdown>{`${data}`}</Markdown>
         </div>
     )
 }
