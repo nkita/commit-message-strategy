@@ -11,7 +11,10 @@ export const select = async ({ where = {} }: { where: any }) => await prisma.gCT
                     }
                 }
             },
+            orderBy:{
+                sort:'asc'
+            }
         }
     },
-    where: where
+    where: where,
 })

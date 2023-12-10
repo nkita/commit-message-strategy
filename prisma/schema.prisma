@@ -33,6 +33,7 @@ model GCInput {
   count          Int?
   typeId         String
   templateId     String
+  sort           Int
   type           GCType       @relation(fields: [typeId], references: [id])
   template       GCTemplate   @relation(fields: [templateId], references: [id])
   typeItem       GCTypeItem[]

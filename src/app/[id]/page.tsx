@@ -28,6 +28,9 @@ export default function Home() {
       } else {
         let val = template.format
         template.input.forEach((i: any) => {
+          if(i.id === 'cc100footer'){
+            console.log(i.target_value,i.replace_format.replace('${value}', data[i.id]))
+          }
           val = val.replace(i.target_value, !data[i.id] ? "" : i.replace_format.replace('${value}', data[i.id]))
         })
         setValue('result', val)
