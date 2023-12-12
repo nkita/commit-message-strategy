@@ -10,7 +10,6 @@ import {
     TopArea as _TopArea
 } from './input-area'
 
-
 export const Radio = _Radio
 export const Select = _Select
 export const InputText = _InputText
