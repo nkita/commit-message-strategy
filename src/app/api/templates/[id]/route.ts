@@ -11,7 +11,7 @@ export const GET = async (request: Request, { params }: { params: any }) => {
     if (result.length === 0) {
         return responseJson(400)
     } else {
-        return responseJson(200, result[0])
+        return responseJson(200, config)
     }
 }
 

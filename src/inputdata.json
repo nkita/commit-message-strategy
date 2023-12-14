@@ -8,8 +8,10 @@
             "label": "Type",
             "required": true,
             "description": "This is describe space.",
-            "type": "select",
-            "type_items": [
+            "type": {
+                "label": "select"
+            },
+            "typeItem": [
                 {
                     "label": "fix",
                     "description": "A commit of the type fix patches a bug in your codebase "
@@ -27,8 +29,10 @@
             "label": "Description",
             "required": true,
             "description": "This is describe space.",
-            "type": "input",
-            "type_items": [],
+            "type": {
+                "label": "input"
+            },
+            "typeItem": [],
             "target_value": "<description>",
             "replace_format": "${value}"
         },
@@ -37,8 +41,10 @@
             "label": "Scope",
             "required": false,
             "description": "A scope MUST consist of a noun describing a section of the codebase.",
-            "type": "input",
-            "type_items": [],
+            "type": {
+                "label": "input"
+            },
+            "typeItem": [],
             "target_value": "[scope]",
             "replace_format": "(${value})"
         },
@@ -47,8 +53,10 @@
             "label": "Body",
             "required": false,
             "description": "",
-            "type": "textarea",
-            "type_items": [],
+            "type": {
+                "label": "textarea"
+            },
+            "typeItem": [],
             "target_value": "\n\n[body]",
             "replace_format": "\n\n${value}"
         },
@@ -57,8 +65,10 @@
             "label": "Breaking Change",
             "required": false,
             "description": "",
-            "type": "toggle",
-            "type_items": [],
+            "type": {
+                "label": "toggle"
+            },
+            "typeItem": [],
             "target_value": "[breaking change]",
             "replace_format": "!"
         },
@@ -67,8 +77,10 @@
             "label": "Footer(s)",
             "required": false,
             "description": "* Each footer MUST consist of a word token, followed by either a :<space> or <space># separator, followed by a string value. \n * A **footer’s** token MUST use - in place of whitespace characters, e.g., Acked-by (this helps differentiate the footer section from a multi-paragraph body). An exception is made for BREAKING CHANGE, which MAY also be used as a token. \n * A footer’s value MAY contain spaces and newlines, and parsing MUST terminate when the next valid footer token/separator pair is observed.",
-            "type": "textarea",
-            "type_items": [],
+            "type": {
+                "label": "textarea"
+            },
+            "typeItem": [],
             "target_value": "\n\n[footer(s)]",
             "replace_format": "\n\n${value}"
         }

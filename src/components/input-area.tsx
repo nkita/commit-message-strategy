@@ -70,6 +70,7 @@ export const ResultArea = ({
     disableBtn?: boolean
 }) => {
 
+    if (template.input.length === 0) return
     return (
         <div className='p-5 rounded-lg shadow-lg bg-white border'>
             <div className='flex justify-between items-center '>
