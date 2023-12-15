@@ -1,5 +1,5 @@
 'use client'
-import { InputArea, TextArea, ResultArea, TopArea, InputText } from '@/components'
+import { InputArea, TextArea, ResultArea, CheckBox, TopArea, InputText } from '@/components'
 import { useForm } from "react-hook-form"
 import { useHotkeys } from 'react-hotkeys-hook'
 import { Toaster, toast } from 'react-hot-toast'
@@ -8,12 +8,11 @@ import { useParams } from 'next/navigation'
 import { ReactNode, useState } from 'react'
 
 export default function Home() {
-  const [input, setInput] = useState([])
   const [template, setTemplate] = useState({
     id: "aaa",
     title: "",
     description: "",
-    input: input,
+    input: [],
     format: ""
   })
   const params = useParams()
@@ -64,7 +63,18 @@ export default function Home() {
   // if (t_error) return <>{t_error}</>
 
   const handleAdd = () => {
-
+    const inputs: any = template.input
+    inputs.push({
+      id: template.id + inputs.length,
+      label: "",
+      required: false,
+      description: "",
+      target_value: "",
+      replace_format: "",
+      type: ""
+    })
+    template.input = inputs
+    setTemplate({ ...template })
   }
 
   return (
@@ -81,9 +91,30 @@ export default function Home() {
             <InputLine label="Format" required={true} >
               <TextArea id={"edit_format"} resize={true} rows={5} placeholder='Write format' register={register} />
             </InputLine>
-            <div className='p-4 border rounded-md'>
-              <EditInputs />
-            </div>
+            {template.input.length > 0 &&
+              <div>
+                {template.input.map((i: any, idx) => {
+                  return (
+                    <>
+                      <div key={idx} className='p-4 border rounded-md'>
+                        <EditInputs
+                          id={i.id}
+                          label={i.label}
+                          required={i.required}
+                          description={i.description}
+                          target_value={i.target_value}
+                          replace_format={i.replace_format}
+                          type={i.type}
+                          register={register}
+                          sort={idx} />
+                      </div>
+                      <div className='py-2'></div>
+                    </>
+                  )
+                })
+                }
+              </div>
+            }
             <div className='py-4'>
               <button onClick={handleAdd} className='w-full p-4 border border-dashed border-gray-400 rounded-md hover:border-blue-300 hover:bg-blue-50 ease-linear duration-200'>+Add</button>
             </div>
@@ -103,21 +134,60 @@ export default function Home() {
   )
 }
 
-const EditInputs = () => {
+const EditInputs = ({
+  id,
+  label,
+  required,
+  description,
+  target_value,
+  replace_format,
+  sort,
+  register,
+}: {
+  id: string
+  label: string
+  required: string
+  description: string
+  target_value: string
+  replace_format: string
+  type: 'select' | 'input' | 'textarea' | 'toggle'
+  sort: number
+  register: any
+}
+) => {
   return (
     <>
-      <p className='py-2'>Please input type.</p>
-      <select placeholder='Select type' className='p-4 rounded-md w-full outline-none border focus:ring-1 border-gray-300 focus:ring-blue-300 focus:border-blue-300' >
-        <option value="select">select</option>
-        <option value="input">input</option>
-        <option value="textare">textare</option>
-        <option value="toggle">switch</option>
-      </select >
+      <h1>Input #{sort}</h1>
+      <div>
+        <InputLine label="Please input type.">
+          <select placeholder='Select type' className='p-4 rounded-md w-full outline-none border focus:ring-1 border-gray-300 focus:ring-blue-300 focus:border-blue-300' >
+            <option value="select">select</option>
+            <option value="input">input</option>
+            <option value="textare">textare</option>
+            <option value="toggle">switch</option>
+          </select >
+        </InputLine>
+        <InputLine label="Label">
+          <InputText id={"edit_input_label" + id} placeholder='Write Label' register={register} />
+        </InputLine>
+        <InputLine label="Required">
+          <CheckBox id={"edit_input_required" + id} register={register} />
+        </InputLine>
+        <InputLine label="Description">
+          <TextArea id={"edit_input_description" + id} placeholder='Write Description' register={register} />
+        </InputLine>
+        <InputLine label="Target Value">
+          <TextArea id={"edit_input_target" + id} placeholder='Write Target value.' register={register} />
+        </InputLine>
+        <InputLine label="Replace Value">
+          <TextArea id={"edit_input_replace" + id} placeholder='Write Replace value.' register={register} />
+        </InputLine>
+      </div>
     </>
   )
 }
 
-const InputLine = ({ label, required, children }: { label: string, required: boolean, children: ReactNode }) => {
+const InputLine = ({ label, required = false, children }: { label: string, required?: boolean, children: ReactNode }) => {
   return (
     <div className='w-full py-1'>
       <div className={`pb-1 text-base ${required ? "text-red-500" : ""}`}>{`${label}${required ? "*" : ""}`}</div>
