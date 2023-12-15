@@ -63,16 +63,18 @@ export const ResultArea = ({
     register,
     handleCopyBtn,
     disableBtn,
+    isEdit = false,
 }: {
     template: any
     register: any
     handleCopyBtn?: any
     disableBtn?: boolean
+    isEdit?: boolean
 }) => {
 
-    if (template.input.length === 0) return
+    if (template.input.length === 0 && !isEdit) return
     return (
-        <div className='p-5 rounded-lg shadow-lg bg-white border'>
+        <div className={`p-5 rounded-lg ${isEdit ? "shadow-none" : "shadow-lg"} bg-white border`}>
             <div className='flex justify-between items-center '>
                 <h2>Result</h2>
                 {handleCopyBtn !== undefined && disableBtn !== undefined &&

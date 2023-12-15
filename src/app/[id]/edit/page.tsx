@@ -8,11 +8,12 @@ import { useParams } from 'next/navigation'
 import { ReactNode, useState } from 'react'
 
 export default function Home() {
+  const [input, setInput] = useState([])
   const [template, setTemplate] = useState({
     id: "aaa",
     title: "",
     description: "",
-    input: [],
+    input: input,
     format: ""
   })
   const params = useParams()
@@ -36,6 +37,11 @@ export default function Home() {
       setTemplate({ ...template })
       return
     }
+    if (name === "edit_format") {
+      template.format = data[name]
+      setTemplate({ ...template })
+      return
+    }
 
     if (name !== 'result') {
       if (["false", "true"].includes(Object.keys(data).filter(k => k !== 'result').map(k => data[k]).join(''))) {
@@ -53,10 +59,13 @@ export default function Home() {
     }
   })
 
-
   // if (t_loading) return <>loading...</>
   // if (!template) return <>No template</>
   // if (t_error) return <>{t_error}</>
+
+  const handleAdd = () => {
+
+  }
 
   return (
     <main className="flex pt-10 px-16 justify-center w-screen">
@@ -69,16 +78,22 @@ export default function Home() {
             <InputLine label="Description" required={true} >
               <TextArea id={"edit_description"} resize={true} rows={5} placeholder='Write description' register={register} />
             </InputLine>
-            <InputLine label="Type" required={true} >
-              <EditInputs />
+            <InputLine label="Format" required={true} >
+              <TextArea id={"edit_format"} resize={true} rows={5} placeholder='Write format' register={register} />
             </InputLine>
+            <div className='p-4 border rounded-md'>
+              <EditInputs />
+            </div>
+            <div className='py-4'>
+              <button onClick={handleAdd} className='w-full p-4 border border-dashed border-gray-400 rounded-md hover:border-blue-300 hover:bg-blue-50 ease-linear duration-200'>+Add</button>
+            </div>
           </section>
           <section className='h-full md:w-6/12 md:w-min-[400px] overflow-auto md:sticky md:top-10'>
             <div className='bg-green-50 p-5 rounded-md'>
               <h1>Preview</h1>
               <TopArea template={template} />
               <InputArea template={template} control={control} register={register} />
-              <ResultArea template={template} register={register} />
+              <ResultArea template={template} register={register} isEdit={true} />
             </div>
           </section>
         </div>
@@ -90,12 +105,15 @@ export default function Home() {
 
 const EditInputs = () => {
   return (
-    <select className='p-4 rounded-md w-full outline-none border focus:ring-1 border-gray-300 focus:ring-blue-300 focus:border-blue-300' >
-      <option value="select">select</option>
-      <option value="input">input</option>
-      <option value="textare">textare</option>
-      <option value="toggle">switch</option>
-    </select>
+    <>
+      <p className='py-2'>Please input type.</p>
+      <select placeholder='Select type' className='p-4 rounded-md w-full outline-none border focus:ring-1 border-gray-300 focus:ring-blue-300 focus:border-blue-300' >
+        <option value="select">select</option>
+        <option value="input">input</option>
+        <option value="textare">textare</option>
+        <option value="toggle">switch</option>
+      </select >
+    </>
   )
 }
 
