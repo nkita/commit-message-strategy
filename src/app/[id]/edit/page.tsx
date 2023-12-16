@@ -45,7 +45,7 @@ export default function Home() {
       const input_id = name.split("-")
       const id = input_id[2]
       const element = input_id[3]
-      console.log(id,element)
+      console.log(id, element)
       template.input.map((i: any) => {
         if (i.id === id) {
           i[element] = data[name]
@@ -74,7 +74,6 @@ export default function Home() {
   // if (t_loading) return <>loading...</>
   // if (!template) return <>No template</>
   // if (t_error) return <>{t_error}</>
-console.log(template)
   const handleAdd = () => {
     const inputs: any = template.input
     inputs.push({
@@ -92,7 +91,7 @@ console.log(template)
   }
   return (
     <main className="flex pt-10 px-16 justify-center w-screen">
-      <div className='md:min-w-[768px] md:max-w-[1024px]'>
+      <div className='w-full md:max-w-[1280px]'>
         <div className='md:flex gap-8 items-start pb-10'>
           <section className='justify-center md:w-6/12'>
             <InputLine label="Title" required={true} >
@@ -191,7 +190,7 @@ const EditInputs = ({
           <CheckBox id={`edit-input-${id}-required`} register={register} defaultChecked={required} />
         </InputLine>
         <InputLine label="Description">
-          <TextArea id={`edit-input-${id}-description`} placeholder='Write Description' register={register} defaultValue={description} />
+          <TextArea id={`edit-input-${id}-description`} rows={3} placeholder='Write Description' register={register} defaultValue={description} />
         </InputLine>
         <InputLine label="Target Value">
           <TextArea id={`edit-input-${id}-target_value`} placeholder='Write Target value.' register={register} defaultValue={target_value} />
