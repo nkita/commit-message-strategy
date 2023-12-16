@@ -2,7 +2,18 @@ import { Combobox } from '@headlessui/react'
 import { useState } from 'react'
 import { Controller } from "react-hook-form"
 
-export const Select = ({ id, items, control, placeholder, autoFocus = false }: { id: string, items: any, control: any, placeholder?: string, autoFocus?: boolean }) => {
+export const Select = ({
+    id,
+    items,
+    control,
+    placeholder,
+    autoFocus = false
+}: {
+    id: string,
+    items: any,
+    control: any,
+    placeholder?: string, autoFocus?: boolean
+}) => {
     const [query, setQuery] = useState('')
     const filteredItems =
         query === ''
@@ -12,6 +23,7 @@ export const Select = ({ id, items, control, placeholder, autoFocus = false }: {
                     .replace(/\s+/g, '')
                     .includes(query.toLowerCase().replace(/\s+/g, ''))
             )
+    console.log("fileter!", filteredItems)
     return (
         <div className='w-full'>
             <Controller

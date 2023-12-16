@@ -41,6 +41,19 @@ export default function Home() {
       setTemplate({ ...template })
       return
     }
+    if (name?.includes("edit_input")) {
+      const input_id = name.split("_")
+      const id = input_id[2]
+      const element = input_id[3]
+      template.input.map((i: any) => {
+        console.log(i[name], data[name], name)
+        if (i.id === id) {
+          i[element] = data[name]
+        }
+        return i
+      })
+      setTemplate({ ...template })
+    }
 
     if (name !== 'result') {
       if (["false", "true"].includes(Object.keys(data).filter(k => k !== 'result').map(k => data[k]).join(''))) {
@@ -71,12 +84,12 @@ export default function Home() {
       description: "",
       target_value: "",
       replace_format: "",
-      type: ""
+      type: { "label": "input" },
+      typeItem: []
     })
     template.input = inputs
     setTemplate({ ...template })
   }
-
   return (
     <main className="flex pt-10 px-16 justify-center w-screen">
       <div className='md:min-w-[768px] md:max-w-[1024px]'>
@@ -95,8 +108,8 @@ export default function Home() {
               <div>
                 {template.input.map((i: any, idx) => {
                   return (
-                    <>
-                      <div key={idx} className='p-4 border rounded-md'>
+                    <div key={idx}>
+                      <div className='p-4 border rounded-md'>
                         <EditInputs
                           id={i.id}
                           label={i.label}
@@ -109,7 +122,7 @@ export default function Home() {
                           sort={idx} />
                       </div>
                       <div className='py-2'></div>
-                    </>
+                    </div>
                   )
                 })
                 }
@@ -146,7 +159,7 @@ const EditInputs = ({
 }: {
   id: string
   label: string
-  required: string
+  required: boolean
   description: string
   target_value: string
   replace_format: string
@@ -155,32 +168,36 @@ const EditInputs = ({
   register: any
 }
 ) => {
+  const [open, setOpen] = useState(true)
   return (
     <>
-      <h1>Input #{sort}</h1>
-      <div>
+      <div className='flex justify-between'>
+        <h1>Input #{sort}</h1>
+        <button className='text-lg bg-gray-100 text-center px-2 rounded-lg  border border-gray-200 hover:border-gray-600 ' onClick={() => setOpen(!open)}>{open ? "-" : "+"}</button>
+      </div>
+      <div className={`${open ? '' : 'hidden'} ease-in`}>
         <InputLine label="Please input type.">
-          <select placeholder='Select type' className='p-4 rounded-md w-full outline-none border focus:ring-1 border-gray-300 focus:ring-blue-300 focus:border-blue-300' >
-            <option value="select">select</option>
+          <select  {...register(`edit_input_${id}_select`)} placeholder='Select type' className='p-4 rounded-md w-full outline-none border focus:ring-1 border-gray-300 focus:ring-blue-300 focus:border-blue-300' >
             <option value="input">input</option>
+            <option value="select">select</option>
             <option value="textare">textare</option>
             <option value="toggle">switch</option>
           </select >
         </InputLine>
         <InputLine label="Label">
-          <InputText id={"edit_input_label" + id} placeholder='Write Label' register={register} />
+          <InputText id={`edit_input_${id}_label`} placeholder='Write Label' register={register} defaultValue={label} />
         </InputLine>
         <InputLine label="Required">
-          <CheckBox id={"edit_input_required" + id} register={register} />
+          <CheckBox id={`edit_input_${id}_required`} register={register} defaultChecked={required} />
         </InputLine>
         <InputLine label="Description">
-          <TextArea id={"edit_input_description" + id} placeholder='Write Description' register={register} />
+          <TextArea id={`edit_input_${id}_description`} placeholder='Write Description' register={register} defaultValue={description} />
         </InputLine>
         <InputLine label="Target Value">
-          <TextArea id={"edit_input_target" + id} placeholder='Write Target value.' register={register} />
+          <TextArea id={`edit_input_${id}_target`} placeholder='Write Target value.' register={register} defaultValue={target_value} />
         </InputLine>
         <InputLine label="Replace Value">
-          <TextArea id={"edit_input_replace" + id} placeholder='Write Replace value.' register={register} />
+          <TextArea id={`edit_input_${id}_replace`} placeholder='Write Replace value.' register={register} defaultValue={replace_format} />
         </InputLine>
       </div>
     </>
