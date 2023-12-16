@@ -23,7 +23,6 @@ export const Select = ({
                     .replace(/\s+/g, '')
                     .includes(query.toLowerCase().replace(/\s+/g, ''))
             )
-    console.log("fileter!", filteredItems)
     return (
         <div className='w-full'>
             <Controller

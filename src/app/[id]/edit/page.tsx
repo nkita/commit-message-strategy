@@ -26,27 +26,27 @@ export default function Home() {
   } = useForm<any>()
 
   watch((data, { name }) => {
-    if (name === "edit_title") {
+    if (name === "edit-title") {
       template.title = data[name]
       setTemplate({ ...template })
       return
     }
-    if (name === "edit_description") {
+    if (name === "edit-description") {
       template.description = data[name]
       setTemplate({ ...template })
       return
     }
-    if (name === "edit_format") {
+    if (name === "edit-format") {
       template.format = data[name]
       setTemplate({ ...template })
       return
     }
-    if (name?.includes("edit_input")) {
-      const input_id = name.split("_")
+    if (name?.includes("edit-input")) {
+      const input_id = name.split("-")
       const id = input_id[2]
       const element = input_id[3]
+      console.log(id,element)
       template.input.map((i: any) => {
-        console.log(i[name], data[name], name)
         if (i.id === id) {
           i[element] = data[name]
         }
@@ -74,7 +74,7 @@ export default function Home() {
   // if (t_loading) return <>loading...</>
   // if (!template) return <>No template</>
   // if (t_error) return <>{t_error}</>
-
+console.log(template)
   const handleAdd = () => {
     const inputs: any = template.input
     inputs.push({
@@ -96,13 +96,13 @@ export default function Home() {
         <div className='md:flex gap-8 items-start pb-10'>
           <section className='justify-center md:w-6/12'>
             <InputLine label="Title" required={true} >
-              <InputText id={"edit_title"} placeholder='Write Title' register={register} />
+              <InputText id={"edit-title"} placeholder='Write Title' register={register} />
             </InputLine>
             <InputLine label="Description" required={true} >
-              <TextArea id={"edit_description"} resize={true} rows={5} placeholder='Write description' register={register} />
+              <TextArea id={"edit-description"} resize={true} rows={5} placeholder='Write description' register={register} />
             </InputLine>
             <InputLine label="Format" required={true} >
-              <TextArea id={"edit_format"} resize={true} rows={5} placeholder='Write format' register={register} />
+              <TextArea id={"edit-format"} resize={true} rows={5} placeholder='Write format' register={register} />
             </InputLine>
             {template.input.length > 0 &&
               <div>
@@ -177,7 +177,7 @@ const EditInputs = ({
       </div>
       <div className={`${open ? '' : 'hidden'} ease-in`}>
         <InputLine label="Please input type.">
-          <select  {...register(`edit_input_${id}_select`)} placeholder='Select type' className='p-4 rounded-md w-full outline-none border focus:ring-1 border-gray-300 focus:ring-blue-300 focus:border-blue-300' >
+          <select  {...register(`edit-input-${id}-select`)} placeholder='Select type' className='p-4 rounded-md w-full outline-none border focus:ring-1 border-gray-300 focus:ring-blue-300 focus:border-blue-300' >
             <option value="input">input</option>
             <option value="select">select</option>
             <option value="textare">textare</option>
@@ -185,19 +185,19 @@ const EditInputs = ({
           </select >
         </InputLine>
         <InputLine label="Label">
-          <InputText id={`edit_input_${id}_label`} placeholder='Write Label' register={register} defaultValue={label} />
+          <InputText id={`edit-input-${id}-label`} placeholder='Write Label' register={register} defaultValue={label} />
         </InputLine>
         <InputLine label="Required">
-          <CheckBox id={`edit_input_${id}_required`} register={register} defaultChecked={required} />
+          <CheckBox id={`edit-input-${id}-required`} register={register} defaultChecked={required} />
         </InputLine>
         <InputLine label="Description">
-          <TextArea id={`edit_input_${id}_description`} placeholder='Write Description' register={register} defaultValue={description} />
+          <TextArea id={`edit-input-${id}-description`} placeholder='Write Description' register={register} defaultValue={description} />
         </InputLine>
         <InputLine label="Target Value">
-          <TextArea id={`edit_input_${id}_target`} placeholder='Write Target value.' register={register} defaultValue={target_value} />
+          <TextArea id={`edit-input-${id}-target_value`} placeholder='Write Target value.' register={register} defaultValue={target_value} />
         </InputLine>
         <InputLine label="Replace Value">
-          <TextArea id={`edit_input_${id}_replace`} placeholder='Write Replace value.' register={register} defaultValue={replace_format} />
+          <TextArea id={`edit-input-${id}-replace_format`} placeholder='Write Replace value.' register={register} defaultValue={replace_format} />
         </InputLine>
       </div>
     </>
