@@ -45,13 +45,14 @@ export default function Home() {
       const input_id = name.split("-")
       const id = input_id[2]
       const element = input_id[3]
-      console.log(id, element)
       template.input.map((i: any) => {
         if (i.id === id) {
-          i[element] = data[name]
+          console.log(element, data[name])
+          i[element] = element === "type" ? { "label": data[name] } : data[name]
         }
         return i
       })
+      console.log(template)
       setTemplate({ ...template })
     }
 
@@ -176,10 +177,10 @@ const EditInputs = ({
       </div>
       <div className={`${open ? '' : 'hidden'} ease-in`}>
         <InputLine label="Please input type.">
-          <select  {...register(`edit-input-${id}-select`)} placeholder='Select type' className='p-4 rounded-md w-full outline-none border focus:ring-1 border-gray-300 focus:ring-blue-300 focus:border-blue-300' >
+          <select  {...register(`edit-input-${id}-type`)} placeholder='Select type' className='p-4 rounded-md w-full outline-none border focus:ring-1 border-gray-300 focus:ring-blue-300 focus:border-blue-300' >
             <option value="input">input</option>
             <option value="select">select</option>
-            <option value="textare">textare</option>
+            <option value="textarea">textarea</option>
             <option value="toggle">switch</option>
           </select >
         </InputLine>
