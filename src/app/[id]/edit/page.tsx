@@ -1,23 +1,32 @@
 'use client'
 import { InputArea, TextArea, ResultArea, CheckBox, TopArea, InputText } from '@/components'
 import { useForm } from "react-hook-form"
-import { useHotkeys } from 'react-hotkeys-hook'
 import { Toaster, toast } from 'react-hot-toast'
-import { useFetch } from '@/hooks/fetch'
 import { useParams } from 'next/navigation'
-import { ReactNode, useState } from 'react'
+import { ReactNode, useEffect, useState } from 'react'
 
 export default function Home() {
-  const [template, setTemplate] = useState({
-    id: "aaa",
-    title: "",
-    description: "",
-    input: [],
-    format: ""
-  })
   const params = useParams()
-  const tid = params.id
-  // const { data: template, error: t_error, isLoading: t_loading } = useFetch(`/api/templates/${tid}`, { method: 'GET' })
+  const [isLoading, setLoading] = useState(true)
+  const [template, setTemplate] = useState(
+    {
+      id: "i" + Math.floor(new Date().getTime() / 1000),
+      title: "",
+      description: "",
+      input: [],
+      format: ""
+    }
+  )
+  useEffect(() => {
+    async function fetchData() {
+      const res = await fetch(`/api/templates/${params.id}`);
+      const data = await res.json();
+      if (data) setTemplate(data)
+      setLoading(false)
+    }
+    fetchData();
+  }, [params.id]);
+
   const {
     register,
     control,
@@ -25,16 +34,22 @@ export default function Home() {
     watch,
   } = useForm<any>()
 
+
+  if (isLoading) return <>loading...</>
   watch((data, { name }) => {
     if (name?.includes("edit-")) {
       const s = name.split("-")
       const type = s[1]
+      const inputId = s[2]
+      const inputElementName = s[3]
       if (type === "input") {
-        const id = s[2]
-        const element = s[3]
-        template.input.map((i: any) => i.id === id ? element === "type" ? { "label": data[name] } : data[name] : i)
+        template.input.map((i: any) => {
+          if (i.id === inputId) {
+            i[inputElementName] = inputElementName === "type" ? { "label": data[name] } : data[name]
+          }
+          return i
+        })
         setTemplate({ ...template })
-
       } else if (
         "title" === type ||
         "description" === type ||
@@ -43,7 +58,6 @@ export default function Home() {
         template[type] = data[name]
       }
       setTemplate({ ...template })
-
     } else {
       if (name !== 'result') {
         if (["false", "true"].includes(Object.keys(data).filter(k => k !== 'result').map(k => data[k]).join(''))) {
@@ -52,7 +66,7 @@ export default function Home() {
           let val = template.format
           template.input.forEach((i: any) => {
             if (i.id === 'cc100footer') {
-              console.log(i.target_value, i.replace_format.replace('${value}', data[i.id]))
+              // console.log(i.target_value, i.replace_format.replace('${value}', data[i.id]))
             }
             val = val.replace(i.target_value, !data[i.id] ? "" : i.replace_format.replace('${value}', data[i.id]))
           })
@@ -61,14 +75,8 @@ export default function Home() {
       }
 
     }
-    // if (name?.includes("edit-input")) {
-    // }
-
   })
 
-  // if (t_loading) return <>loading...</>
-  // if (!template) return <>No template</>
-  // if (t_error) return <>{t_error}</>
   const handleAdd = () => {
     const inputs: any = template.input
     inputs.push({
@@ -77,7 +85,7 @@ export default function Home() {
       required: false,
       description: "",
       target_value: "",
-      replace_format: "",
+      replace_format: "${value}",
       type: { "label": "input" },
       typeItem: []
     })
@@ -100,7 +108,7 @@ export default function Home() {
             </InputLine>
             {template.input.length > 0 &&
               <div>
-                {template.input.map((i: any, idx) => {
+                {template.input.map((i: any, idx: number) => {
                   return (
                     <div key={idx}>
                       <div className='p-4 border rounded-md'>
