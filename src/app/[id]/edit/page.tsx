@@ -26,50 +26,44 @@ export default function Home() {
   } = useForm<any>()
 
   watch((data, { name }) => {
-    if (name === "edit-title") {
-      template.title = data[name]
-      setTemplate({ ...template })
-      return
-    }
-    if (name === "edit-description") {
-      template.description = data[name]
-      setTemplate({ ...template })
-      return
-    }
-    if (name === "edit-format") {
-      template.format = data[name]
-      setTemplate({ ...template })
-      return
-    }
-    if (name?.includes("edit-input")) {
-      const input_id = name.split("-")
-      const id = input_id[2]
-      const element = input_id[3]
-      template.input.map((i: any) => {
-        if (i.id === id) {
-          console.log(element, data[name])
-          i[element] = element === "type" ? { "label": data[name] } : data[name]
-        }
-        return i
-      })
-      console.log(template)
-      setTemplate({ ...template })
-    }
+    if (name?.includes("edit-")) {
+      const s = name.split("-")
+      const type = s[1]
+      if (type === "input") {
+        const id = s[2]
+        const element = s[3]
+        template.input.map((i: any) => i.id === id ? element === "type" ? { "label": data[name] } : data[name] : i)
+        setTemplate({ ...template })
 
-    if (name !== 'result') {
-      if (["false", "true"].includes(Object.keys(data).filter(k => k !== 'result').map(k => data[k]).join(''))) {
-        setValue('result', '')
-      } else {
-        let val = template.format
-        template.input.forEach((i: any) => {
-          if (i.id === 'cc100footer') {
-            console.log(i.target_value, i.replace_format.replace('${value}', data[i.id]))
-          }
-          val = val.replace(i.target_value, !data[i.id] ? "" : i.replace_format.replace('${value}', data[i.id]))
-        })
-        setValue('result', val)
+      } else if (
+        "title" === type ||
+        "description" === type ||
+        "format" === type
+      ) {
+        template[type] = data[name]
       }
+      setTemplate({ ...template })
+
+    } else {
+      if (name !== 'result') {
+        if (["false", "true"].includes(Object.keys(data).filter(k => k !== 'result').map(k => data[k]).join(''))) {
+          setValue('result', '')
+        } else {
+          let val = template.format
+          template.input.forEach((i: any) => {
+            if (i.id === 'cc100footer') {
+              console.log(i.target_value, i.replace_format.replace('${value}', data[i.id]))
+            }
+            val = val.replace(i.target_value, !data[i.id] ? "" : i.replace_format.replace('${value}', data[i.id]))
+          })
+          setValue('result', val)
+        }
+      }
+
     }
+    // if (name?.includes("edit-input")) {
+    // }
+
   })
 
   // if (t_loading) return <>loading...</>
