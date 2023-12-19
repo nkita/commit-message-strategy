@@ -97,13 +97,10 @@ export default function Home() {
         <div className='md:flex gap-8 items-start pb-10'>
           <section className='justify-center md:w-6/12'>
             <InputLine label="Title" required={true} >
-              <InputText id={"edit-title"} placeholder='Write Title'  register={register} />
+              <InputText id={"edit-title"} placeholder='Write Title' defaultValue={template.title} register={register} />
             </InputLine>
             <InputLine label="Description" required={true} >
-              <TextArea id={"edit-description"} resize={true} rows={5} placeholder='Write description' register={register} />
-            </InputLine>
-            <InputLine label="Format" required={true} >
-              <TextArea id={"edit-format"} resize={true} rows={5} placeholder='Write format' register={register} />
+              <TextArea id={"edit-description"} resize={true} rows={5} placeholder='Write description' defaultValue={template.description} register={register} />
             </InputLine>
             {template.input.length > 0 &&
               <div>
@@ -129,6 +126,9 @@ export default function Home() {
                 }
               </div>
             }
+            <InputLine label="Format" required={true} >
+              <TextArea id={"edit-format"} resize={true} rows={5} placeholder='Write format' defaultValue={template.format} register={register} />
+            </InputLine>
             <div className='py-4'>
               <button onClick={handleAdd} className='w-full p-4 border border-dashed border-gray-400 rounded-md hover:border-blue-300 hover:bg-blue-50 ease-linear duration-200'>+Add</button>
             </div>
