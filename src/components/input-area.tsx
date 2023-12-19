@@ -45,7 +45,7 @@ export const InputArea = ({
                                     <InputText id={i.id} register={register} placeholder={`Write a ${i.label}.`} autoFocus={autoFocus ? idx === 0 : autoFocus} />
                                 }
                                 {i.type.label === "textarea" &&
-                                    <TextArea id={i.id} register={register} rows={3} placeholder={`Write a ${i.label}.`} autoFocus={autoFocus ? idx === 0 : autoFocus} />
+                                    <TextArea id={i.id} register={register} rows={5} resize={true} placeholder={`Write a ${i.label}.`} autoFocus={autoFocus ? idx === 0 : autoFocus} />
                                 }
                             </div>
                             <div className='pb-4'>
@@ -92,6 +92,7 @@ export const ResultArea = ({
                 <TextArea id='result'
                     placeholder={template.format}
                     register={register}
+                    resize={true}
                     rows={5}
                 />
             </div>
@@ -152,13 +153,13 @@ export const EditInputs = ({
                     <CheckBox id={`edit-input-${id}-required`} register={register} defaultChecked={required} />
                 </InputLine>
                 <InputLine label="Description">
-                    <TextArea id={`edit-input-${id}-description`} rows={3} placeholder='Write Description' register={register} defaultValue={description} />
+                    <TextArea id={`edit-input-${id}-description`} resize={true} rows={5} placeholder='Write Description' register={register} defaultValue={description} />
                 </InputLine>
                 <InputLine label="Target Value">
-                    <TextArea id={`edit-input-${id}-target_value`} placeholder='Write Target value.' register={register} defaultValue={target_value} />
+                    <TextArea id={`edit-input-${id}-target_value`} resize={true} placeholder='Write Target value.' register={register} defaultValue={target_value} />
                 </InputLine>
                 <InputLine label="Replace Value">
-                    <TextArea id={`edit-input-${id}-replace_format`} placeholder='Write Replace value.' register={register} defaultValue={replace_format} />
+                    <TextArea id={`edit-input-${id}-replace_format`} resize={true} placeholder='Write Replace value.' register={register} defaultValue={replace_format} />
                 </InputLine>
             </div>
         </>
