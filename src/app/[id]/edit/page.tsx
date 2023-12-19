@@ -1,9 +1,9 @@
 'use client'
-import { InputArea, TextArea, ResultArea, CheckBox, TopArea, InputText } from '@/components'
+import { InputArea, TextArea, ResultArea, TopArea, InputText, EditInputs, InputLine } from '@/components'
 import { useForm } from "react-hook-form"
 import { Toaster, toast } from 'react-hot-toast'
 import { useParams } from 'next/navigation'
-import { ReactNode, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function Home() {
   const params = useParams()
@@ -49,7 +49,6 @@ export default function Home() {
           }
           return i
         })
-        setTemplate({ ...template })
       } else if (
         "title" === type ||
         "description" === type ||
@@ -98,7 +97,7 @@ export default function Home() {
         <div className='md:flex gap-8 items-start pb-10'>
           <section className='justify-center md:w-6/12'>
             <InputLine label="Title" required={true} >
-              <InputText id={"edit-title"} placeholder='Write Title' register={register} />
+              <InputText id={"edit-title"} placeholder='Write Title'  register={register} />
             </InputLine>
             <InputLine label="Description" required={true} >
               <TextArea id={"edit-description"} resize={true} rows={5} placeholder='Write description' register={register} />
@@ -138,7 +137,7 @@ export default function Home() {
             <div className='bg-green-50 p-5 rounded-md'>
               <h1>Preview</h1>
               <TopArea template={template} />
-              <InputArea template={template} control={control} register={register} />
+              <InputArea template={template} control={control} register={register} autoFocus={true} />
               <ResultArea template={template} register={register} isEdit={true} />
             </div>
           </section>
@@ -146,71 +145,5 @@ export default function Home() {
       </div>
       <div><Toaster /></div>
     </main >
-  )
-}
-
-const EditInputs = ({
-  id,
-  label,
-  required,
-  description,
-  target_value,
-  replace_format,
-  sort,
-  register,
-}: {
-  id: string
-  label: string
-  required: boolean
-  description: string
-  target_value: string
-  replace_format: string
-  type: 'select' | 'input' | 'textarea' | 'toggle'
-  sort: number
-  register: any
-}
-) => {
-  const [open, setOpen] = useState(true)
-  return (
-    <>
-      <div className='flex justify-between'>
-        <h1>Input #{sort}</h1>
-        <button className='text-lg bg-gray-100 text-center px-2 rounded-lg  border border-gray-200 hover:border-gray-600 ' onClick={() => setOpen(!open)}>{open ? "-" : "+"}</button>
-      </div>
-      <div className={`${open ? '' : 'hidden'} ease-in`}>
-        <InputLine label="Please input type.">
-          <select  {...register(`edit-input-${id}-type`)} placeholder='Select type' className='p-4 rounded-md w-full outline-none border focus:ring-1 border-gray-300 focus:ring-blue-300 focus:border-blue-300' >
-            <option value="input">input</option>
-            <option value="select">select</option>
-            <option value="textarea">textarea</option>
-            <option value="toggle">switch</option>
-          </select >
-        </InputLine>
-        <InputLine label="Label">
-          <InputText id={`edit-input-${id}-label`} placeholder='Write Label' register={register} defaultValue={label} />
-        </InputLine>
-        <InputLine label="Required">
-          <CheckBox id={`edit-input-${id}-required`} register={register} defaultChecked={required} />
-        </InputLine>
-        <InputLine label="Description">
-          <TextArea id={`edit-input-${id}-description`} rows={3} placeholder='Write Description' register={register} defaultValue={description} />
-        </InputLine>
-        <InputLine label="Target Value">
-          <TextArea id={`edit-input-${id}-target_value`} placeholder='Write Target value.' register={register} defaultValue={target_value} />
-        </InputLine>
-        <InputLine label="Replace Value">
-          <TextArea id={`edit-input-${id}-replace_format`} placeholder='Write Replace value.' register={register} defaultValue={replace_format} />
-        </InputLine>
-      </div>
-    </>
-  )
-}
-
-const InputLine = ({ label, required = false, children }: { label: string, required?: boolean, children: ReactNode }) => {
-  return (
-    <div className='w-full py-1'>
-      <div className={`pb-1 text-base ${required ? "text-red-500" : ""}`}>{`${label}${required ? "*" : ""}`}</div>
-      <div>{children}</div>
-    </div>
   )
 }

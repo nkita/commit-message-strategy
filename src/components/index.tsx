@@ -7,7 +7,9 @@ import { View as _View } from './markdown'
 import {
     InputArea as _InputArea,
     ResultArea as _ResultArea,
-    TopArea as _TopArea
+    TopArea as _TopArea,
+    InputLine as _InputLine,
+    EditInputs as _EditInputs
 } from './input-area'
 
 export const Radio = _Radio
@@ -19,3 +21,5 @@ export const View = _View
 export const InputArea = _InputArea
 export const ResultArea = _ResultArea
 export const TopArea = _TopArea
+export const EditInputs = _EditInputs
+export const InputLine = _InputLine
