@@ -17,7 +17,11 @@ export default function Home() {
     control,
     setValue,
     watch,
-  } = useForm<any>()
+  } = useForm<any>({
+    defaultValues: {
+      cc100body: ""
+    }
+  })
 
   watch((data, { name }) => {
     if (!template) return
@@ -27,9 +31,6 @@ export default function Home() {
       } else {
         let val = template.format
         template.input.forEach((i: any) => {
-          if (i.id === 'cc100footer') {
-            console.log(i.target_value, i.replace_format.replace('${value}', data[i.id]))
-          }
           val = val.replace(i.target_value, !data[i.id] ? "" : i.replace_format.replace('${value}', data[i.id]))
         })
         setValue('result', val)
@@ -38,6 +39,7 @@ export default function Home() {
   })
 
   useHotkeys('ctrl+k', () => handleCopyBtn(), { enableOnFormTags: true })
+  useHotkeys('ctrl+l', () => handleClearBtn(), { enableOnFormTags: true })
 
   const handleCopyBtn = async () => {
     const msg = watch('result')
@@ -45,6 +47,15 @@ export default function Home() {
       await navigator.clipboard.writeText(msg)
       toast.success('Copied')
     }
+  }
+
+  const handleClearBtn = () => {
+    console.log(watch())
+    Object.entries(watch()).forEach(([k, v]) => {
+      setValue(k, typeof v === 'boolean' ? false : "")
+    })
+    console.log(watch())
+    toast.success('Clear')
   }
   if (t_loading) return <><div className='flex justify-center items-center'>loading...</div></>
   if (!template) return <>No template</>
@@ -62,7 +73,7 @@ export default function Home() {
               <InputArea template={template} control={control} register={register} />
             </section>
             <section className='md:w-6/12  md:w-min-[400px] md:sticky md:top-10'>
-              <ResultArea template={template} register={register} handleCopyBtn={handleCopyBtn} disableBtn={!watch('result')} />
+              <ResultArea template={template} register={register} handleCopyBtn={handleCopyBtn} handleClearBtn={handleClearBtn} disableBtn={!watch('result')} />
             </section>
           </div>
         </div>

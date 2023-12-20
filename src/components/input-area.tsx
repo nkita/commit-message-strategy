@@ -63,12 +63,14 @@ export const ResultArea = ({
     template,
     register,
     handleCopyBtn,
+    handleClearBtn,
     disableBtn,
     isEdit = false,
 }: {
     template: any
     register: any
     handleCopyBtn?: any
+    handleClearBtn?: any
     disableBtn?: boolean
     isEdit?: boolean
 }) => {
@@ -78,15 +80,6 @@ export const ResultArea = ({
         <div className={`p-5 rounded-lg ${isEdit ? "shadow-none" : "shadow-lg"} bg-white border`}>
             <div className='flex justify-between items-center '>
                 <h2>Result</h2>
-                {handleCopyBtn !== undefined && disableBtn !== undefined &&
-                    <div className='py-1'>
-                        <button type="button" onClick={handleCopyBtn} disabled={disableBtn} className="text-white cursor-pointer bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 text-center inline-flex items-center disabled:bg-gray-300 disabled:cursor-auto ease-in duration-150">
-                            <div>
-                                <span className='text-sm'>Copy<span className='pl-1 text-xs'>(Ctrl + K)</span></span>
-                            </div>
-                        </button>
-                    </div>
-                }
             </div>
             <div className='pt-2'>
                 <TextArea id='result'
@@ -95,6 +88,20 @@ export const ResultArea = ({
                     resize={true}
                     rows={3}
                 />
+            </div>
+            <div className='flex justify-between  py-1'>
+                <button type="button" onClick={handleClearBtn} className="text-blue-500 cursor-pointer ring-1 ring-blue-300 hover:ring-2 focus:ring-4 font-medium rounded-lg text-sm px-5 py-2 text-center inline-flex items-center disabled:bg-gray-300 disabled:cursor-auto ease-in duration-150">
+                    <div>
+                        <span className='text-sm'>Clear<span className='pl-1 text-xs'>(Ctrl + L)</span></span>
+                    </div>
+                </button>
+                {handleCopyBtn !== undefined && disableBtn !== undefined &&
+                    <button type="button" onClick={handleCopyBtn} disabled={disableBtn} className="text-white cursor-pointer bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 text-center inline-flex items-center disabled:bg-gray-300 disabled:cursor-auto ease-in duration-150">
+                        <div>
+                            <span className='text-sm'>Copy<span className='pl-1 text-xs'>(Ctrl + K)</span></span>
+                        </div>
+                    </button>
+                }
             </div>
         </div >
     )
