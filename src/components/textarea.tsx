@@ -4,7 +4,8 @@ export const TextArea = (
     {
         id,
         name,
-        rows = 2,
+        rows = 3,
+        maxRows = 8,
         register,
         placeholder,
         autoFocus = false,
@@ -14,6 +15,7 @@ export const TextArea = (
         id: string
         name?: string
         rows?: number
+        maxRows?: number
         register?: any
         placeholder?: string
         autoFocus?: boolean
@@ -28,7 +30,8 @@ export const TextArea = (
             id={id}
             placeholder={placeholder}
             autoFocus={autoFocus}
-            rows={3}
+            minRows={rows}
+            maxRows={maxRows}
             defaultValue={defaultValue}
             {...register(id)}
             className={`py-2 pl-3 pr-3 ${resize ? "resize-y" : "resize-none"} w-full  leading-1  text-sm text-gray-900 bg-gray-50 outline-none border focus:ring-1 border-gray-300 focus:ring-blue-300 focus:border-blue-300 text-left rounded-md `}
