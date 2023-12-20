@@ -1,6 +1,7 @@
 import { Combobox } from '@headlessui/react'
 import { useState } from 'react'
 import { Controller } from "react-hook-form"
+import { ChevronUpDownIcon } from '@heroicons/react/20/solid'
 
 export const Select = ({
     id,
@@ -37,7 +38,12 @@ export const Select = ({
                         <div className="relative mt-1">
                             <div className="relative w-full">
                                 <Combobox.Input onBlur={onBlur} displayValue={(item: string) => item} onChange={(event) => setQuery(event.target.value)} maxLength={50} autoFocus={autoFocus} placeholder={placeholder} className="py-2 pl-3 pr-10  w-full leading-1  text-sm text-gray-900 bg-gray-50 outline-none border focus:ring-1 border-gray-300 focus:ring-blue-300 focus:border-blue-300 text-left rounded-md" />
-                                <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">all</Combobox.Button>
+                                <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
+                                    <ChevronUpDownIcon
+                                        className="h-5 w-5 text-gray-400"
+                                        aria-hidden="true"
+                                    />
+                                </Combobox.Button>
                             </div>
                             <Combobox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 ring-1 ring-gray-500 focus:outline-none text-base shadow-2xl z-10" >
                                 {filteredItems.length === 0 && query !== '' ? (
