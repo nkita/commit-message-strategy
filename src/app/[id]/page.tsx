@@ -47,9 +47,7 @@ export default function Home() {
   }
 
   const handleClearBtn = () => {
-    // setFocus(template.input[0].id)
-    setFocus('cc100type')
-    console.log(template.input[0].id)
+    setFocus(template.input[0].id)
     Object.entries(watch()).forEach(([k, v]) => {
       setValue(k, typeof v === 'boolean' ? false : "")
     })
