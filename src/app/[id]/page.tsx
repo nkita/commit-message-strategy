@@ -16,12 +16,9 @@ export default function Home() {
     register,
     control,
     setValue,
+    setFocus,
     watch,
-  } = useForm<any>({
-    defaultValues: {
-      cc100body: ""
-    }
-  })
+  } = useForm<any>()
 
   watch((data, { name }) => {
     if (!template) return
@@ -50,11 +47,12 @@ export default function Home() {
   }
 
   const handleClearBtn = () => {
-    console.log(watch())
+    // setFocus(template.input[0].id)
+    setFocus('cc100type')
+    console.log(template.input[0].id)
     Object.entries(watch()).forEach(([k, v]) => {
       setValue(k, typeof v === 'boolean' ? false : "")
     })
-    console.log(watch())
     toast.success('Clear')
   }
   if (t_loading) return <><div className='flex justify-center items-center'>loading...</div></>

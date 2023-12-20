@@ -33,11 +33,11 @@ export const Select = ({
                 rules={{
                     required: "Please select a type",
                 }}
-                render={({ field: { onChange, value, onBlur } }) => (
+                render={({ field: { onChange, value, onBlur, ref } }) => (
                     <Combobox value={value} onChange={onChange} nullable>
                         <div className="relative mt-1">
                             <div className="relative w-full">
-                                <Combobox.Input onBlur={onBlur} displayValue={(item: string) => item} onChange={(event) => setQuery(event.target.value)} maxLength={50} autoFocus={autoFocus} placeholder={placeholder} className="py-2 pl-3 pr-10  w-full leading-1  text-sm text-gray-900 bg-gray-50 outline-none border focus:ring-1 border-gray-300 focus:ring-blue-300 focus:border-blue-300 text-left rounded-md" />
+                                <Combobox.Input onBlur={onBlur} ref={ref} displayValue={(item: string) => item} onChange={(event) => setQuery(event.target.value)} maxLength={50} autoFocus={autoFocus} placeholder={placeholder} className="py-2 pl-3 pr-10  w-full leading-1  text-sm text-gray-900 bg-gray-50 outline-none border focus:ring-1 border-gray-300 focus:ring-blue-300 focus:border-blue-300 text-left rounded-md" />
                                 <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
                                     <ChevronUpDownIcon
                                         className="h-5 w-5 text-gray-400"
