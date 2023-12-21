@@ -66,6 +66,7 @@ export const ResultArea = ({
     handleClearBtn,
     disableBtn,
     isEdit = false,
+    withCmd = false,
 }: {
     template: any
     register: any
@@ -73,15 +74,26 @@ export const ResultArea = ({
     handleClearBtn?: any
     disableBtn?: boolean
     isEdit?: boolean
+    withCmd?: boolean
 }) => {
-
     if (template.input.length === 0 && !isEdit) return
     return (
         <div className={`p-5 rounded-lg ${isEdit ? "shadow-none" : "shadow-lg"} bg-white border`}>
-            <div className='flex justify-between items-center '>
-                <h2>Result</h2>
-            </div>
-            <div className='pt-2'>
+            <h2>Result</h2>
+            {!isEdit &&
+                <div className='flex justify-between pt-2'>
+                    <div className='leading-5'>
+                        {withCmd &&
+                            <p className='text-sm text-gray-500'>git commit -m</p>
+                        }
+                    </div>
+                    <div className='flex'>
+                        <label htmlFor='withcmd' className='text-xs pr-2 text-gray-500'>Execute from git command</label>
+                        <input id='withcmd' type="checkbox" {...register("withcmd")} />
+                    </div>
+                </div>
+            }
+            <div className='pt-1'>
                 <TextArea id='result'
                     placeholder={template.format}
                     register={register}

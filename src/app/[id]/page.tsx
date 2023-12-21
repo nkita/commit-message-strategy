@@ -6,6 +6,7 @@ import { Toaster, toast } from 'react-hot-toast'
 import { useFetch } from '@/hooks/fetch'
 import { useParams } from 'next/navigation'
 import { Footer } from '@/components/footer';
+import { useEffect, useState } from 'react'
 
 export default function Home() {
   const params = useParams()
@@ -18,11 +19,15 @@ export default function Home() {
     setValue,
     setFocus,
     watch,
-  } = useForm<any>()
+  } = useForm<any>({
+    defaultValues: {
+      withcmd: true
+    }
+  })
 
   watch((data, { name }) => {
     if (!template) return
-    if (name !== 'result') {
+    if (name !== 'result' && name !== 'withcmd') {
       if (["false", "true"].includes(Object.keys(data).filter(k => k !== 'result').map(k => data[k]).join(''))) {
         setValue('result', '')
       } else {
@@ -40,8 +45,9 @@ export default function Home() {
 
   const handleCopyBtn = async () => {
     const msg = watch('result')
+    const cmd = watch('withcmd')
     if (msg) {
-      await navigator.clipboard.writeText(msg)
+      await navigator.clipboard.writeText(cmd ? `git commit -m "${msg}"` : msg)
       toast.success('Copied')
     }
   }
@@ -49,10 +55,11 @@ export default function Home() {
   const handleClearBtn = () => {
     setFocus(template.input[0].id)
     Object.entries(watch()).forEach(([k, v]) => {
-      setValue(k, typeof v === 'boolean' ? false : "")
+      if (k !== 'withcmd') setValue(k, typeof v === 'boolean' ? false : "");
     })
     toast.success('Clear')
   }
+
   if (t_loading) return <><div className='flex justify-center items-center'>loading...</div></>
   if (!template) return <>No template</>
   if (t_error) return <>{t_error}</>
@@ -69,7 +76,7 @@ export default function Home() {
               <InputArea template={template} control={control} register={register} />
             </section>
             <section className='md:w-6/12  md:w-min-[400px] md:sticky md:top-10'>
-              <ResultArea template={template} register={register} handleCopyBtn={handleCopyBtn} handleClearBtn={handleClearBtn} disableBtn={!watch('result')} />
+              <ResultArea template={template} register={register} handleCopyBtn={handleCopyBtn} handleClearBtn={handleClearBtn} withCmd={watch('withcmd')} disableBtn={!watch('result')} />
             </section>
           </div>
         </div>
