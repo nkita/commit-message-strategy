@@ -98,7 +98,7 @@ export const ResultArea = ({
                     placeholder={template.format}
                     register={register}
                     resize={true}
-                    rows={3}
+                    rows={1}
                 />
             </div>
             <div className='flex justify-between  py-1'>
