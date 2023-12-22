@@ -9,6 +9,7 @@ import { Footer } from '@/components/footer';
 import { useEffect, useState } from 'react'
 
 export default function Home() {
+  const [isFormValid, setFormValid] = useState(false)
   const params = useParams()
   const tid = params.id
   const { data: template, error: t_error, isLoading: t_loading } = useFetch(`/api/templates/${tid}`, { method: 'GET' })
@@ -28,22 +29,30 @@ export default function Home() {
   watch((data, { name }) => {
     if (!template) return
     if (name !== 'result' && name !== 'withcmd') {
-      if (["false", "true"].includes(Object.keys(data).filter(k => k !== 'result').map(k => data[k]).join(''))) {
+      // not input
+      if (!Object.keys(data).filter(k => (k !== 'result' && k !== 'withcmd')).map(k => data[k]).filter(d => d !== false).join('')) {
         setValue('result', '')
       } else {
         let val = template.format
+        let isError = false
         template.input.forEach((i: any) => {
           val = val.replace(i.target_value, !data[i.id] ? "" : i.replace_format.replace('${value}', data[i.id]))
+          if (i.required) {
+            if (!data[i.id]) {
+              isError = true
+            }
+          }
         })
+        setFormValid(!isError)
         setValue('result', val)
       }
     }
   })
-
   useHotkeys('ctrl+k', () => handleCopyBtn(), { enableOnFormTags: true })
   useHotkeys('ctrl+l', () => handleClearBtn(), { enableOnFormTags: true })
 
   const handleCopyBtn = async () => {
+    if (!isFormValid) return
     const msg = watch('result')
     const cmd = watch('withcmd')
     if (msg) {
@@ -76,7 +85,7 @@ export default function Home() {
               <InputArea template={template} control={control} register={register} />
             </section>
             <section className='md:w-6/12  md:w-min-[400px] md:sticky md:top-10'>
-              <ResultArea template={template} register={register} handleCopyBtn={handleCopyBtn} handleClearBtn={handleClearBtn} withCmd={watch('withcmd')} disableBtn={!watch('result')} />
+              <ResultArea template={template} register={register} handleCopyBtn={handleCopyBtn} handleClearBtn={handleClearBtn} withCmd={watch('withcmd')} disabled={!isFormValid} />
             </section>
           </div>
         </div>

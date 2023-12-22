@@ -64,7 +64,7 @@ export const ResultArea = ({
     register,
     handleCopyBtn,
     handleClearBtn,
-    disableBtn,
+    disabled,
     isEdit = false,
     withCmd = false,
 }: {
@@ -72,7 +72,7 @@ export const ResultArea = ({
     register: any
     handleCopyBtn?: any
     handleClearBtn?: any
-    disableBtn?: boolean
+    disabled?: boolean
     isEdit?: boolean
     withCmd?: boolean
 }) => {
@@ -99,6 +99,7 @@ export const ResultArea = ({
                     register={register}
                     resize={true}
                     rows={1}
+                    maxRows={100}
                 />
             </div>
             <div className='flex justify-between  py-1'>
@@ -107,8 +108,8 @@ export const ResultArea = ({
                         <span className='text-sm'>Clear<span className='pl-1 text-xs'>(Ctrl + L)</span></span>
                     </div>
                 </button>
-                {handleCopyBtn !== undefined && disableBtn !== undefined &&
-                    <button type="button" onClick={handleCopyBtn} disabled={disableBtn} className="text-white cursor-pointer bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 text-center inline-flex items-center disabled:bg-gray-300 disabled:cursor-auto ease-in duration-150">
+                {handleCopyBtn !== undefined && disabled !== undefined &&
+                    <button type="button" onClick={handleCopyBtn} disabled={disabled} className="text-white cursor-pointer bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2 text-center inline-flex items-center disabled:bg-gray-300 disabled:cursor-auto ease-in duration-150">
                         <div>
                             <span className='text-sm'>Copy<span className='pl-1 text-xs'>(Ctrl + K)</span></span>
                         </div>
