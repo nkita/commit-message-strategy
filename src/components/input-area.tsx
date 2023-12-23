@@ -46,10 +46,10 @@ export const InputArea = ({
                                     <CheckBox id={i.id} register={register} autoFocus={autoFocus ? idx === 0 : autoFocus} />
                                 }
                                 {i.type.label === "input" &&
-                                    <InputText id={i.id} register={register} placeholder={`Write a ${i.label}.`} autoFocus={autoFocus ? idx === 0 : autoFocus} />
+                                    <InputText id={i.id} register={register} placeholder={`Write a ${i.label}.`} maxLength={i.count} autoFocus={autoFocus ? idx === 0 : autoFocus} />
                                 }
                                 {i.type.label === "textarea" &&
-                                    <TextArea id={i.id} register={register} rows={3} resize={true} placeholder={`Write a ${i.label}.`} autoFocus={autoFocus ? idx === 0 : autoFocus} />
+                                    <TextArea id={i.id} register={register} rows={3} resize={true} placeholder={`Write a ${i.label}.`} maxLength={i.count} autoFocus={autoFocus ? idx === 0 : autoFocus} />
                                 }
                             </div>
                             <div className='pb-4'>
