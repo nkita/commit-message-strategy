@@ -25,7 +25,6 @@ export default function Home() {
       withcmd: true
     }
   })
-
   watch((data, { name }) => {
     if (!template) return
     if (name !== 'result' && name !== 'withcmd') {
@@ -82,7 +81,7 @@ export default function Home() {
           </section>
           <div className='md:flex gap-8 items-start pb-10'>
             <section className='md:w-6/12'>
-              <InputArea template={template} control={control} register={register} />
+              <InputArea template={template} control={control} register={register} watch={watch} />
             </section>
             <section className='md:w-6/12  md:w-min-[400px] md:sticky md:top-10'>
               <ResultArea template={template} register={register} handleCopyBtn={handleCopyBtn} handleClearBtn={handleClearBtn} withCmd={watch('withcmd')} disabled={!isFormValid} />

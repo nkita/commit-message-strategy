@@ -20,11 +20,13 @@ export const InputArea = ({
     template,
     control,
     register,
+    watch,
     autoFocus = true,
 }: {
     template: any
     control: any
-    register: any,
+    register: any
+    watch?: any
     autoFocus?: boolean
 }
 ) => {
@@ -32,8 +34,10 @@ export const InputArea = ({
         <div className='justify-center px-2'>
             {template.input &&
                 template.input.map((i: any, idx: number) => {
+                    const str = watch(i.id)
+                    const count = !str ? 0 : str.length
                     return (
-                        <InputLine label={i.label} required={i.required} key={i.id}>
+                        <InputLine label={i.label} required={i.required} key={i.id} count={count} countLimit={i.count}>
                             <div>
                                 {i.type.label === "select" &&
                                     <Select id={i.id} items={i.typeItem} control={control} placeholder={`Write a ${i.label}.`} autoFocus={autoFocus ? idx === 0 : autoFocus} />
@@ -120,10 +124,27 @@ export const ResultArea = ({
     )
 }
 
-export const InputLine = ({ label, required = false, children }: { label: string, required?: boolean, children: ReactNode }) => {
+export const InputLine = ({
+    label,
+    required = false,
+    count = 0,
+    countLimit = null,
+    children
+}: {
+    label: string,
+    required?: boolean,
+    count?: number | null
+    countLimit?: number | null
+    children: ReactNode
+}) => {
     return (
-        <div className='w-full py-1'>
-            <div className={`pb-1 text-base ${required ? "text-red-500" : ""}`}>{`${label}${required ? "*" : ""}`}</div>
+        <div className='w-full py-1 '>
+            <div className='flex justify-between align-text-bottom'>
+                <div className={`pb-1 text-base ${required ? "text-red-500" : ""}`}>{`${label}${required ? "*" : ""}`}</div>
+                {countLimit &&
+                    <div className='flex text-gray-500 justify-end text-xs items-end'>{count}/{countLimit}</div>
+                }
+            </div>
             <div>{children}</div>
         </div>
     )
