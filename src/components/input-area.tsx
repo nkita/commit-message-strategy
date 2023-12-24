@@ -86,10 +86,8 @@ export const ResultArea = ({
             <h2>Result</h2>
             {!isEdit &&
                 <div className='flex justify-between pt-2'>
-                    <div className='leading-5'>
-                        {withCmd &&
-                            <p className='text-sm text-gray-500'>git commit -m</p>
-                        }
+                    <div className='h-5'>
+                        <p className={`${withCmd ? "" : "hidden"} text-sm text-gray-500 ease-in duration-300`}>git commit -m</p>
                     </div>
                     <div className='flex'>
                         <label htmlFor='withcmd' className='text-xs pr-2 text-gray-500'>Execute from git command</label>
@@ -119,6 +117,9 @@ export const ResultArea = ({
                         </div>
                     </button>
                 }
+            </div>
+            <div className='h-5 text-right'>
+                <div className={`${disabled ? "" : "hidden"} leading-4 text-red-400 text-xs ease-n duration-350`}>Enter the <span className="font-bold">required</span> information.</div>
             </div>
         </div >
     )
