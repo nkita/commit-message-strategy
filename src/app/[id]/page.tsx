@@ -75,7 +75,7 @@ export default function Home() {
   return (
     <>
       <main className="flex pt-10 px-16 justify-center w-screen">
-        <div className='md:min-w-[768px] md:max-w-[1024px]'>
+        <div className='md:min-w-[768px] md:max-w-[1280px]'>
           <section>
             <TopArea template={template} />
           </section>
@@ -90,7 +90,6 @@ export default function Home() {
         </div>
         <div><Toaster /></div>
       </main >
-      <Footer />
     </>
   )
 }

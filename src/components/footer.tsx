@@ -3,20 +3,21 @@ import Link from "next/link"
 export const Footer = () => {
 
     return (
-        <footer className="w-full p-4 bg-white border-t border-gray-200 shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800 dark:border-gray-600">
-            <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">Copyright © 2023 nkita.
-            </span>
-            <ul className="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
-                <li>
-                    <ExLink href="#" value="About" />
-                </li>
-                <li>
-                    <ExLink href="#" value="Terms" />
-                </li>
-                <li>
-                    <ExLink href="#" value="Contact" />
-                </li>
-            </ul>
+        <footer className="flex justify-center w-screen px-16 py-3 bg-gray-600 border-gray-200">
+            <div className="flex justify-center">
+                <ul className="flex flex-wrap items-center text-sm font-medium text-gray-50 sm:mt-0">
+                    <li>
+                        <ExLink href="#" value="About" />
+                    </li>
+                    <li>
+                        <ExLink href="#" value="Terms" />
+                    </li>
+                    <li>
+                        <ExLink href="#" value="Contact" />
+                    </li>
+                </ul>
+                <div className="text-sm text-gray-50 sm:text-center">Copyright © 2023 nkita.</div>
+            </div>
         </footer>
     )
 }
