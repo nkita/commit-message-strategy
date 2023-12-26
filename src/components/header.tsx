@@ -5,12 +5,12 @@ export const Header = () => {
 
     const [isOpen, setOpen] = useState(false)
     return (
-        <nav className="flex justify-center w-screen px-16 py-3 bg-white border ">
+        <nav className="flex justify-center px-16 py-3 bg-white border ">
             <div className="flex flex-wrap items-center justify-between w-[1280px]">
                 <a href="/" className="flex items-center">
                     <span className="self-center text-blue-600 text-xl whitespace-nowrap">CM Recipe</span>
                 </a>
-                <button data-collapse-toggle="navbar-default" onClick={() => setOpen(!isOpen)} type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-blue border-blue-100 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="navbar-default" aria-expanded="false">
+                <button data-collapse-toggle="navbar-default" onClick={() => setOpen(!isOpen)} type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-600 border-blue-100 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="navbar-default" aria-expanded="false">
                     {isOpen ? "Close" : "Menu"}
                 </button>
                 <div className={`${isOpen ? "" : "hidden"} w-full md:block md:w-auto`} id="navbar-default">
@@ -37,7 +37,7 @@ export const Header = () => {
 const ExLink = ({ href, value }: { href: string, value: string }) => {
 
     return (
-        <Link href={href} className="block py-2 px-1 text-blue-600 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-800">
+        <Link href={href} className="block py-2 px-1 text-gray-600 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-gray-800">
             {value}
         </Link>
     )

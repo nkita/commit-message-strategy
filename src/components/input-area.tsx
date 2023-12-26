@@ -86,7 +86,7 @@ export const ResultArea = ({
             <h2>Result</h2>
             {!isEdit &&
                 <div className='flex justify-between pt-2'>
-                    <div className='h-5'>
+                    <div className='leading-5'>
                         <p className={`${withCmd ? "" : "hidden"} text-sm text-gray-500 ease-in duration-300`}>git commit -m</p>
                     </div>
                     <div className='flex'>

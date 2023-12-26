@@ -74,8 +74,8 @@ export default function Home() {
 
   return (
     <>
-      <main className="flex pt-10 px-16 justify-center w-screen">
-        <div className='md:min-w-[768px] md:max-w-[1280px]'>
+      <main className="flex pt-10 px-16 justify-center">
+        <div className='w-[1280px]'>
           <section>
             <TopArea template={template} />
           </section>
@@ -83,13 +83,14 @@ export default function Home() {
             <section className='md:w-6/12'>
               <InputArea template={template} control={control} register={register} watch={watch} />
             </section>
-            <section className='md:w-6/12  md:w-min-[400px] md:sticky md:top-10'>
+            <section className='md:w-6/12  md:sticky md:top-10'>
               <ResultArea template={template} register={register} handleCopyBtn={handleCopyBtn} handleClearBtn={handleClearBtn} withCmd={watch('withcmd')} disabled={!isFormValid} />
             </section>
           </div>
         </div>
         <div><Toaster /></div>
       </main >
+      <Footer />
     </>
   )
 }
