@@ -4,6 +4,8 @@ import { InputText as _InputText } from './inputtext'
 import { CheckBox as _CheckBox } from './checkbox'
 import { TextArea as _TextArea } from './textarea'
 import { View as _View } from './markdown'
+import { Skelton as _Skelton } from './skeleton'
+import { Spiner as _Spiner } from './spiner'
 import {
     InputArea as _InputArea,
     ResultArea as _ResultArea,
@@ -23,3 +25,5 @@ export const ResultArea = _ResultArea
 export const TopArea = _TopArea
 export const EditInputs = _EditInputs
 export const InputLine = _InputLine
+export const Skelton = _Skelton
+export const Spiner = _Spiner

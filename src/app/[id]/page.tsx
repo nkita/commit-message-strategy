@@ -1,5 +1,5 @@
 'use client'
-import { InputArea, ResultArea, TopArea } from '@/components'
+import { InputArea, ResultArea, TopArea, Spiner } from '@/components'
 import { useForm } from "react-hook-form"
 import { useHotkeys } from 'react-hotkeys-hook'
 import { Toaster, toast } from 'react-hot-toast'
@@ -68,7 +68,11 @@ export default function Home() {
     toast.success('Clear')
   }
 
-  if (t_loading) return <><div className='flex justify-center items-center'>loading...</div></>
+  if (t_loading) return (
+    <div className='absolute top-1/2 left-1/2 h-12 w-12'>
+      <Spiner />
+    </div>
+  )
   if (!template) return <>No template</>
   if (t_error) return <>{t_error}</>
 
