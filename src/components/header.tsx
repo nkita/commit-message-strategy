@@ -8,7 +8,7 @@ export const Header = () => {
         <nav className="flex justify-center px-16 py-3 bg-white border ">
             <div className="flex flex-wrap items-center justify-between w-[1280px]">
                 <a href="/" className="flex items-center">
-                    <span className="self-center text-blue-600 text-xl whitespace-nowrap">CM Recipe</span>
+                    <span className="self-center text-blue-600 text-xl whitespace-nowrap">Message Recipe</span>
                 </a>
                 <button data-collapse-toggle="navbar-default" onClick={() => setOpen(!isOpen)} type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-600 border-blue-100 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="navbar-default" aria-expanded="false">
                     {isOpen ? "Close" : "Menu"}
