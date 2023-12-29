@@ -16,7 +16,7 @@ export const Header = () => {
                 <div className={`${isOpen ? "" : "hidden"} w-full md:block md:w-auto`} id="navbar-default">
                     <ul className="text-md flex flex-col p-4 md:p-0 mt-4 border border-blue-100 rounded-lg md:bg-opacity-0 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0">
                         <li>
-                            <ExLink href={"#"} value={"Other recipes"} />
+                            <ExLink href={"/list"} value={"Other recipes"} />
                         </li>
                         <li>
                             <ExLink href={"#"} value={"Terms"} />
