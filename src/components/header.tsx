@@ -1,11 +1,11 @@
 "use client"
 import Link from "next/link"
 import { useState } from "react"
-export const Header = () => {
+export const Header = ({ isBorder = true }: { isBorder?: boolean }) => {
 
     const [isOpen, setOpen] = useState(false)
     return (
-        <nav className="flex justify-center px-16 py-3 bg-white border ">
+        <nav className={`flex justify-center px-16 py-3 bg-white ${isBorder ? "border" : ""}`}  >
             <div className="flex flex-wrap items-center justify-between w-[1280px]">
                 <a href="/" className="flex items-center">
                     <span className="self-center text-blue-600 text-xl whitespace-nowrap">Message Recipe</span>
@@ -23,9 +23,6 @@ export const Header = () => {
                         </li>
                         <li>
                             <ExLink href={"#"} value={"Contact"} />
-                        </li>
-                        <li>
-                            <ExLink href={"#"} value={"Login"} />
                         </li>
                     </ul>
                 </div>
