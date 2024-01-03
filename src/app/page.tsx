@@ -2,6 +2,7 @@
 
 import Image from "next/image"
 import { Header } from '@/components/header';
+import { Card } from '@/components/';
 
 export default function Home() {
 
@@ -16,7 +17,7 @@ export default function Home() {
         <h1 className="text-center text-3xl font-extrabold">あなたのためのコミットメッセージ作成をサポートします。</h1>
         <div className="flex justify-center items-center pt-10 px-8">
           <div className="border rounded-lg shadow-md">
-            <Image src="/image.png" alt="layout" width={2226 * 0.35} height={1202 * 0.35} layout="fixed" ></Image>
+            <Image src="/image.png" alt="layout" width={2226 * 0.35} height={1202 * 0.35}></Image>
           </div>
         </div>
       </section>
@@ -35,24 +36,28 @@ export default function Home() {
             title="Conventional Commits 1.0.0-beta.4 Conventional Commits 1.0.0-beta.4 Conventional Commits 1.0.0-beta.4"
             description="The Conventional Commits specification is a lightweight convention on top of commit messages. It provides an easy set of rules for creating an explicit commit history; which makes it easier to write automated tools on top of. This convention dovetails with SemVer, by describing the features, fixes, and breaking changes made in commit messages."
             updateAt="2023-12-11 12:11:00"
+            isCompact={true}
           />
           <Card
             emoji="👍"
             title="Contributing to Angular Commit Message Format"
             description="This specification is inspired by and supersedes the AngularJS commit message format. We have very precise rules over how our Git commit messages must be formatted. This format leads to easier to read commit history."
             updateAt="2023-12-11 12:11:00"
+            isCompact={true}
           />
           <Card
             emoji="🤗"
             title="Semantic Commit Messages"
             description="See how a minor change to your commit message style can make you a better programmer."
             updateAt="2023-12-11 12:11:00"
+            isCompact={true}
           />
           <Card
             emoji="🤩"
             title="Original My Commit Messages "
             description="This format is Original"
             updateAt="2023-12-11 12:11:00"
+            isCompact={true}
           />
         </section>
       </section>
@@ -61,32 +66,4 @@ export default function Home() {
       </footer>
     </>
   )
-}
-
-const Card = (
-    {
-        emoji,
-        title,
-        description,
-        updateAt
-    }: {
-        emoji: string
-        title: string
-        description: string
-        updateAt: string
-    }
-) => {
-
-    return (
-        <a className="hover:shadow-none  bg-white shadow-md rounded-md border border-gray-100 hover:bg-blue-50 hover:border-blue-300 hover:cursor-pointer ease-in duration-200">
-            <div className="p-8 h-[300px] md:h-[350px] w-[300px] ">
-                <div className="text-3xl text-center ">{emoji}</div>
-                <div className="h-[70px] md:h-[100px] font-semibold  text-lg text-gray-800 text-center py-3 line-clamp-2 md:line-clamp-3">
-                    <h1>{title}</h1>
-                </div>
-                <div className="text-gray-600 text-base line-clamp-6">{description}</div>
-            </div>
-            <div className="text-xs text-gray-400 p-2 text-right">{updateAt}</div>
-        </a>
-    )
 }

@@ -6,6 +6,7 @@ import { TextArea as _TextArea } from './textarea'
 import { View as _View } from './markdown'
 import { Skelton as _Skelton } from './skeleton'
 import { Spiner as _Spiner } from './spiner'
+import { Card as _Card } from './card'
 import {
     InputArea as _InputArea,
     ResultArea as _ResultArea,
@@ -27,3 +28,4 @@ export const EditInputs = _EditInputs
 export const InputLine = _InputLine
 export const Skelton = _Skelton
 export const Spiner = _Spiner
+export const Card = _Card
