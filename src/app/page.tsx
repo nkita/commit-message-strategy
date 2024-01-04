@@ -37,7 +37,7 @@ export default function Home() {
 
       <section className="flex py-28 items-center flex-col justify-center">
         <h1 className="font-bold text-xl py-4 px-8 ">メッセージを書く</h1>
-        <section className="p-8 bg-gray-50 rounded-lg border overflow-y-auto overflow-x-hidden h-[400px] w-[500px]  md:h-[450px] md:w-10/12 md:overflow-x-auto md:overflow-y-hidden">
+        <section className="p-8 bg-gray-50 rounded-lg border overflow-y-auto overflow-x-hidden h-[400px] max-w-[500px] xl:max-w-[1265px] md:h-[450px] md:max-w-[700px] md:overflow-x-auto md:overflow-y-hidden">
           <div className="grid grid-cols-1 gap-8 items-center md:grid-cols-none md:flex ">
             <Card
               emoji="🤗"
@@ -70,9 +70,26 @@ export default function Home() {
           </div>
         </section>
       </section>
-      <footer className="h-[150px] bg-gray-800 text-gray-50 text-sm p-4">
-        <span> Copyright © 2023 nkita.</span>
+      <footer className="flex justify-center text-base leading-10 text-gray-800">
+        <div className="flex items-center">
+          <div className="pr-8"> Copyright © 2023 nkita.</div>
+          <ExLink href="#" value={"Contact"} />
+          /
+          <ExLink href="#" value={"Github"} />
+          /
+          <ExLink href="#" value={"X"} />
+        </div>
       </footer>
     </>
+  )
+}
+
+
+const ExLink = ({ href, value }: { href: string, value: string }) => {
+
+  return (
+    <Link href={href} className="hover:underline ms-2 me-2">
+      {value}
+    </Link>
   )
 }
