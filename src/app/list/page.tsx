@@ -11,7 +11,7 @@ export default function Home() {
         <>
             <main className="flex py-10 px-16 justify-center h-full">
                 <div className='w-[1280px]'>
-                    <h1 className="font-semibold text-3xl py-8">Other Recipes</h1>
+                    <h1 className="font-semibold text-3xl py-8">Recipes</h1>
                     <section className="grid grid-cols-1 gap-8 pt-4 px-2  xl:grid-cols-4 md:grid-cols-3">
                         <Card
                             emoji="🤗"
