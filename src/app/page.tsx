@@ -3,6 +3,7 @@
 import Image from "next/image"
 import Link from "next/link";
 import { Header } from '@/components/header';
+import { Footer } from '@/components/footer';
 import { Card } from '@/components/';
 
 export default function Home() {
@@ -70,26 +71,7 @@ export default function Home() {
           </div>
         </section>
       </section>
-      <footer className="flex justify-center text-base leading-10 text-gray-800">
-        <div className="flex items-center">
-          <div className="pr-8"> Copyright © 2023 nkita.</div>
-          <ExLink href="#" value={"Contact"} />
-          /
-          <ExLink href="#" value={"Github"} />
-          /
-          <ExLink href="#" value={"X"} />
-        </div>
-      </footer>
+      <Footer addClass={"text-base leading-10 text-gray-800"} />
     </>
-  )
-}
-
-
-const ExLink = ({ href, value }: { href: string, value: string }) => {
-
-  return (
-    <Link href={href} className="hover:underline ms-2 me-2">
-      {value}
-    </Link>
   )
 }

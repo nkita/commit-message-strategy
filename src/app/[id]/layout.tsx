@@ -10,7 +10,7 @@ export default function RootLayout({
     <>
       <Header />
       {children}
-      <Footer />
+      <Footer addClass={"fixed bottom-0  w-screen bg-white/30 text-gray-500 text-sm  backdrop-blur-md"} />
     </>
   )
 }
