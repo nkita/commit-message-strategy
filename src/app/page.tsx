@@ -12,14 +12,14 @@ export default function Home() {
     <>
       <Header isBorder={false} />
       <section className="pt-28 px-8 pb-28">
-        <div className="absolute top-13 right-1/3 text-9xl text-blue-300 blur-3xl whitespace-nowrap">
+        <div className="absolute top-13 right-1/3 text-9xl text-blue-300 blur-3xl whitespace-nowrap -z-10">
           Message Recipe
         </div>
         <h1 className="text-center text-3xl pb-3 font-extrabold">複雑なコミットメッセージを簡単に美しく。</h1>
         <h1 className="text-center text-3xl font-extrabold">あなたのためのコミットメッセージ作成をサポートします。</h1>
         <div className="flex justify-center items-center pt-28">
-          <div className="border rounded-lg shadow-md">
-            <Image src="/image.png" alt="layout" width={2226 * 0.35} height={1202 * 0.35} ></Image>
+          <div className="border rounded-lg shadow-md ">
+            <Image src="/image.png" alt="layout" width={2226 * 0.35} height={1202 * 0.35} className=" ease-in duration-300" ></Image>
           </div>
         </div>
         <div className="flex justify-center pt-28">

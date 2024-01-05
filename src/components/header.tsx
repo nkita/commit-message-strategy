@@ -2,6 +2,10 @@
 import Link from "next/link"
 import Image from "next/image"
 import { useState } from "react"
+import { M_PLUS_1_Code } from 'next/font/google'
+
+const titleFont = M_PLUS_1_Code({ subsets: ["latin"] })
+
 export const Header = ({ isBorder = true }: { isBorder?: boolean }) => {
 
     const [isOpen, setOpen] = useState(false)
@@ -13,7 +17,7 @@ export const Header = ({ isBorder = true }: { isBorder?: boolean }) => {
                         <Image src="/logo.png" alt="layout" width={57 * 0.45} height={55 * 0.45} ></Image>
                     </div>
                     <a href="/" className="flex items-center">
-                        <span className="self-center text-gray-600 text-xl whitespace-nowrap">Message Recipe</span>
+                        <span className={`self-center text-gray-600 text-xl whitespace-nowrap ${titleFont.className}`}>Message Recipe</span>
                     </a>
                 </div>
                 <button data-collapse-toggle="navbar-default" onClick={() => setOpen(!isOpen)} type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-600 border-blue-100 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="navbar-default" aria-expanded="false">
