@@ -1,0 +1,26 @@
+[
+    {
+        "id": "cc1_0_0",
+        "icon": "",
+        "emoji": "",
+        "title": "Conventional Commits 1.0.0",
+        "description": "The Conventional Commits specification is a lightweight convention on top of commit messages. It provides an easy set of rules for creating an explicit commit history; which makes it easier to write automated tools on top of. This convention dovetails with SemVer, by describing the features, fixes, and breaking changes made in commit messages.please check Conventional Commits",
+        "updateAt": "2024-01-06"
+    },
+    {
+        "id": "angular",
+        "icon": "",
+        "emoji": "",
+        "title": "Contributing to Angular Commit Message Format",
+        "description": "This specification is inspired by and supersedes the AngularJS commit message format. We have very precise rules over how our Git commit messages must be formatted. This format leads to easier to read commit history.",
+        "updateAt": "2024-01-06"
+    },
+    {
+        "id": "semantic",
+        "icon": "",
+        "emoji": "",
+        "title": "Semantic Commit Messages",
+        "description": "See how a minor change to your commit message style can make you a better programmer.",
+        "updateAt": "2024-01-06"
+    }
+]

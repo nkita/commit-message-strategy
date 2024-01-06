@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { Card } from '@/components/';
+import list from '@/recipes/list.json'
 
 export default function Home() {
 
@@ -40,34 +41,20 @@ export default function Home() {
         <h1 className="font-bold text-xl py-4 px-8 ">メッセージを書く</h1>
         <section className="p-8 bg-gray-50 rounded-lg border overflow-y-auto overflow-x-hidden h-[400px] max-w-[500px] xl:max-w-[1265px] md:h-[450px] md:max-w-[700px] md:overflow-x-auto md:overflow-y-hidden">
           <div className="grid grid-cols-1 gap-8 items-center md:grid-cols-none md:flex ">
-            <Card
-              emoji="🤗"
-              title="Conventional Commits 1.0.0-beta.4 Conventional Commits 1.0.0-beta.4 Conventional Commits 1.0.0-beta.4"
-              description="The Conventional Commits specification is a lightweight convention on top of commit messages. It provides an easy set of rules for creating an explicit commit history; which makes it easier to write automated tools on top of. This convention dovetails with SemVer, by describing the features, fixes, and breaking changes made in commit messages."
-              updateAt="2023-12-11 12:11:00"
-              isCompact={true}
-            />
-            <Card
-              emoji="👍"
-              title="Contributing to Angular Commit Message Format"
-              description="This specification is inspired by and supersedes the AngularJS commit message format. We have very precise rules over how our Git commit messages must be formatted. This format leads to easier to read commit history."
-              updateAt="2023-12-11 12:11:00"
-              isCompact={true}
-            />
-            <Card
-              emoji="🤗"
-              title="Semantic Commit Messages"
-              description="See how a minor change to your commit message style can make you a better programmer."
-              updateAt="2023-12-11 12:11:00"
-              isCompact={true}
-            />
-            <Card
-              emoji="🤩"
-              title="Original My Commit Messages "
-              description="This format is Original"
-              updateAt="2023-12-11 12:11:00"
-              isCompact={true}
-            />
+            {
+              list.map((l) => {
+                return (
+                  <Card
+                    key={l.id}
+                    emoji={l.emoji}
+                    title={l.title}
+                    description={l.description}
+                    updateAt={l.updateAt}
+                    isCompact={true}
+                  />
+                )
+              })
+            }
           </div>
         </section>
       </section>
