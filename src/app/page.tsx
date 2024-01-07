@@ -47,10 +47,12 @@ export default function Home() {
                   <Card
                     key={l.id}
                     emoji={l.emoji}
+                    icon={l.icon}
                     title={l.title}
                     description={l.description}
                     updateAt={l.updateAt}
                     isCompact={true}
+                    href={"#"}
                   />
                 )
               })
