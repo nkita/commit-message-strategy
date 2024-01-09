@@ -29,7 +29,7 @@ export const Header = ({ isBorder = true }: { isBorder?: boolean }) => {
                             <ExLink href={"/list"} value={"Recipes"} />
                         </li>
                         <li>
-                            <ExLink href={"#"} value={"Terms"} />
+                            <ExLink href={"/terms"} value={"Terms"} />
                         </li>
                     </ul>
                 </div>
