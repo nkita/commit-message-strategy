@@ -24,7 +24,7 @@ export default function Home() {
           </div>
         </div>
         <div className="flex justify-center pt-28">
-          <Link href="cc100" className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 shadow-md border border-gray-100 hover:bg-gradient-to-bl hover:border-blue-300 hover:ring-4 hover:ring-blue-100 hover:cursor-pointer font-medium rounded-xl text-xl px-5 py-2.5 ease-in duration-200">
+          <Link href="recipe/cc100" className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 shadow-md border border-gray-100 hover:bg-gradient-to-bl hover:border-blue-300 hover:ring-4 hover:ring-blue-100 hover:cursor-pointer font-medium rounded-xl text-xl px-5 py-2.5 ease-in duration-200">
             Conventional Commits 1.0.0で試してみる
           </Link>
         </div>

@@ -3,7 +3,7 @@ import Link from "next/link"
 import { FaGithub } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
-export const Footer = ({ addClass }: { addClass: any }) => {
+export const Footer = ({ addClass }: { addClass?: any }) => {
 
     return (
         <footer className={`flex justify-center ${addClass}`}>
