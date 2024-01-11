@@ -20,10 +20,10 @@ export default function Home() {
         <h1 className="text-center text-3xl pb-3 font-extrabold">複雑なコミットメッセージを簡単に美しく。</h1>
         <h1 className="text-center text-3xl font-extrabold">あなたのためのコミットメッセージ作成をサポートします。</h1>
         <div className="flex items-center justify-center max-full">
-            <p className="text-center text-base  text-gray-600 pt-8 max-w-3xl ">
-              HTMLのフォームに文章を入力するだけで、AngularやConventional Commitsのフォーマットに合わせたコミットメッセージが生成されます。
-              開発プロジェクトを効果的に進め、整理された履歴を維持するために、ぜひMessage Recipeをお試しください。
-            </p>
+          <p className="text-center text-base  text-gray-600 pt-8 max-w-3xl ">
+            HTMLのフォームに文章を入力するだけで、AngularやConventional Commitsのフォーマットに合わせたコミットメッセージが生成されます。
+            開発プロジェクトを効果的に進め、整理された履歴を維持するために、ぜひMessage Recipeをお試しください。
+          </p>
         </div>
         <div className="flex justify-center items-center pt-16">
           <div className="border rounded-lg shadow-md ">

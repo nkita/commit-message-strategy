@@ -5,12 +5,13 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://message-recipe.nkitao.com'),
   title: 'Message Recipe',
   openGraph: {
     type: "website",
     // url: "https://///",　ToDo
-    title: "Home | Message Recipe",
-    description: "Message Recipeは、簡単かつ直感的な方法でgit commitメッセージのフォーマットを作成するためのオンラインサービスです。HTMLのフォームに文章を入力するだけで、AngularやConventional Commitsのフォーマットに合わせたメッセージが生成されます。シンプルで分かりやすいインターフェースが、開発者にとって効率的なコミットメッセージの作成をサポートします。開発プロジェクトを効果的に進め、整理された履歴を維持するために、Message Recipeをお試しください。",
+    title: " Message Recipe",
+    description: "Message RecipeはG、HTMLのフォームに文章を入力するだけで、AngularやConventional Commitsといったフォーマットに合わせたメッセージを生成することができます。シンプルで分かりやすいインターフェースが、開発者にとって効率的なコミットメッセージの作成をサポートします。開発プロジェクトを効果的に進め、整理された履歴を維持するために、Message Recipeをぜひお試しください。",
     siteName: "Message Recipe ",
     images: [{
       url: "/logo2.png",
