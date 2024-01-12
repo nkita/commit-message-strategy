@@ -19,8 +19,8 @@ export const metadata: Metadata = {
       height: 216
     }, {
       url: '/logo3.png',
-      width: 298,
-      height: 157
+      width: 1200,
+      height: 630
     }],
   }
 }
