@@ -31,7 +31,7 @@ export default function Home() {
           </div>
         </div>
         <div className="flex justify-center pt-28">
-          <Link href="recipe/cc100" className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 shadow-md border border-gray-100 hover:bg-gradient-to-bl hover:border-blue-300 hover:ring-4 hover:ring-blue-100 hover:cursor-pointer font-medium rounded-xl text-xl px-5 py-2.5 ease-in duration-200">
+          <Link href="recipe/cc100" className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 text-center shadow-md border border-gray-100 hover:bg-gradient-to-bl hover:border-blue-300 hover:ring-4 hover:ring-blue-100 hover:cursor-pointer font-medium rounded-xl text-xl px-5 py-2.5 ease-in duration-200">
             Conventional Commits 1.0.0で試してみる
           </Link>
         </div>
@@ -46,7 +46,7 @@ export default function Home() {
 
       <section className="flex py-28 items-center flex-col justify-center">
         <h1 className="font-bold text-xl py-4 px-8 ">メッセージを書く</h1>
-        <section className="p-8 bg-gray-50 rounded-lg border overflow-y-auto overflow-x-hidden h-[400px] max-w-[500px] xl:max-w-[1265px] md:h-[450px] md:max-w-[700px] md:overflow-x-auto md:overflow-y-hidden">
+        <section className="pt-8 px-8 flex align-middle bg-gray-50 rounded-lg border overflow-y-auto overflow-x-hidden h-[400px] max-w-[500px] xl:max-w-[1265px] md:h-[400px] md:max-w-[700px] md:overflow-x-auto md:overflow-y-hidden md:pt-0">
           <div className="grid grid-cols-1 gap-8 items-center md:grid-cols-none md:flex ">
             {
               list.map((l) => {

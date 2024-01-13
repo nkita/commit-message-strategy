@@ -10,8 +10,8 @@ export const Header = ({ isBorder = true }: { isBorder?: boolean }) => {
 
     const [isOpen, setOpen] = useState(false)
     return (
-        <nav className={`flex justify-center px-16 py-3 bg-white ${isBorder ? "border" : ""}`}  >
-            <div className="flex flex-wrap items-center justify-between w-[1280px]">
+        <nav className={`flex justify-center px-8 py-3 bg-white ${isBorder ? "border" : ""}`}  >
+            <div className="flex flex-wrap items-center justify-between w-screen">
                 <div className="flex items-center ">
                     <div className="pr-4">
                         <Image src="/logo.png" alt="layout" width={57 * 0.45} height={55 * 0.45} ></Image>

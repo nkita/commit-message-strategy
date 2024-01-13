@@ -11,17 +11,14 @@ export const metadata: Metadata = {
     type: "website",
     // url: "https://///",　ToDo
     title: " Message Recipe",
-    description: "Message RecipeはG、HTMLのフォームに文章を入力するだけで、AngularやConventional Commitsといったフォーマットに合わせたメッセージを生成することができます。シンプルで分かりやすいインターフェースが、開発者にとって効率的なコミットメッセージの作成をサポートします。開発プロジェクトを効果的に進め、整理された履歴を維持するために、Message Recipeをぜひお試しください。",
+    description: "Message Recipeは、HTMLのフォームに文章を入力するだけで、AngularやConventional Commitsといったフォーマットに合わせたメッセージを生成することができます。シンプルで分かりやすいインターフェースが、開発者にとって効率的なコミットメッセージの作成をサポートします。開発プロジェクトを効果的に進め、整理された履歴を維持するために、Message Recipeをぜひお試しください。",
     siteName: "Message Recipe ",
-    images: [{
-      url: "/logo2.png",
-      width: 216,
-      height: 216
-    }, {
-      url: '/logo3.png',
-      width: 1200,
-      height: 630
-    }],
+    images: [
+      {
+        url: '/logo3.png',
+        width: 1200,
+        height: 630
+      }],
   }
 }
 
