@@ -13,11 +13,11 @@ export const Header = ({ isBorder = true }: { isBorder?: boolean }) => {
         <nav className={`flex justify-center px-8 py-3 bg-white ${isBorder ? "border" : ""}`}  >
             <div className="flex flex-wrap items-center justify-between w-screen">
                 <div className="flex items-center ">
-                    <div className="pr-4">
+                    <div className="pr-2 md:pr-4">
                         <Image src="/logo.png" alt="layout" width={57 * 0.45} height={55 * 0.45} ></Image>
                     </div>
                     <a href="/" className="flex items-center">
-                        <span className={`self-center text-gray-600 text-xl whitespace-nowrap ${titleFont.className}`}>Message Recipe</span>
+                        <span className={`self-center text-gray-600 text-base md:text-xl whitespace-nowrap ${titleFont.className}`}>Message Recipe</span>
                     </a>
                 </div>
                 <button data-collapse-toggle="navbar-default" onClick={() => setOpen(!isOpen)} type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-600 border-blue-100 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" aria-controls="navbar-default" aria-expanded="false">

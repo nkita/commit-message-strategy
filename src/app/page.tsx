@@ -67,7 +67,7 @@ export default function Home() {
           </div>
         </section>
       </section>
-      <Footer addClass={"text-base leading-10 text-gray-800"} />
+      <Footer addClass={"text-sm md:text-base leading-10 text-gray-800"} />
     </>
   )
 }
