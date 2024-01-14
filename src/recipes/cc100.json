@@ -1,0 +1,92 @@
+{
+    "id": "cc1.0.0",
+    "title": "Conventional Commits 1.0.0",
+    "description": "The Conventional Commits specification is a lightweight convention on top of commit messages. \n It provides an easy set of rules for creating an explicit commit history; which makes it easier to write automated tools on top of. This convention dovetails with SemVer, by describing the features, fixes, and breaking changes made in commit messages.please check [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) ",
+    "input": [
+        {
+            "id": "type",
+            "label": "Type",
+            "required": true,
+            "description": "This is describe space.",
+            "type": {
+                "label": "select"
+            },
+            "typeItem": [
+                {
+                    "label": "fix",
+                    "description": "A commit of the type fix patches a bug in your codebase "
+                },
+                {
+                    "label": "feat",
+                    "description": "A commit of the type feat introduces a new feature to the codebase"
+                }
+            ],
+            "target_value": "<type>",
+            "replace_format": "${value}"
+        },
+        {
+            "id": "description",
+            "label": "Description",
+            "required": true,
+            "description": "This is describe space.",
+            "count": 100,
+            "type": {
+                "label": "input"
+            },
+            "typeItem": [],
+            "target_value": "<description>",
+            "replace_format": "${value}"
+        },
+        {
+            "id": "scope",
+            "label": "Scope",
+            "required": false,
+            "description": "A scope MUST consist of a noun describing a section of the codebase.",
+            "type": {
+                "label": "input"
+            },
+            "typeItem": [],
+            "target_value": "[scope]",
+            "replace_format": "(${value})"
+        },
+        {
+            "id": "body",
+            "label": "Body",
+            "required": false,
+            "description": "",
+            "type": {
+                "label": "textarea"
+            },
+            "typeItem": [],
+            "target_value": "\n\n[body]",
+            "replace_format": "\n\n${value}"
+        },
+        {
+            "id": "break",
+            "label": "Breaking Change",
+            "required": false,
+            "description": "",
+            "type": {
+                "label": "toggle"
+            },
+            "typeItem": [],
+            "target_value": "[breaking change]",
+            "replace_format": "!"
+        },
+        {
+            "id": "footer",
+            "label": "Footer(s)",
+            "required": false,
+            "description": "* Each footer MUST consist of a word token, followed by either a :<space> or <space># separator, followed by a string value. \n * A **footer’s** token MUST use - in place of whitespace characters, e.g., Acked-by (this helps differentiate the footer section from a multi-paragraph body). An exception is made for BREAKING CHANGE, which MAY also be used as a token. \n * A footer’s value MAY contain spaces and newlines, and parsing MUST terminate when the next valid footer token/separator pair is observed.",
+            "type": {
+                "label": "textarea"
+            },
+            "typeItem": [],
+            "target_value": "\n\n[footer(s)]",
+            "replace_format": "\n\n${value}"
+        }
+    ],
+    "format": "<type>[scope][breaking change]: <description>\n\n[body]\n\n[footer(s)]",
+    "updated_at": null,
+    "created_at": null
+}

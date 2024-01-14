@@ -6,7 +6,6 @@ import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { Card } from '@/components/';
 import list from '@/recipes/list.json'
-import { Metadata } from "next";
 
 export default function Home() {
 
