@@ -78,7 +78,7 @@ export default function Home() {
 
   return (
     <>
-      <main className="flex pt-10 px-16 justify-center">
+      <main className="flex pt-10 px-8 md:px-16 justify-center">
         <div className='w-[1280px]'>
           <section>
             <TopArea template={template} />

@@ -10,7 +10,7 @@ export default function RootLayout({
     <>
       <Header />
       {children}
-      <Footer />
+      <Footer addClass={"text-sm md:text-base leading-10 text-gray-800"} />
     </>
   )
 }

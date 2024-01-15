@@ -58,7 +58,7 @@ export default function Home() {
                     description={l.description}
                     updateAt={l.updateAt}
                     isCompact={true}
-                    href={"#"}
+                    href={`/recipe/${l.id}`}
                   />
                 )
               })
