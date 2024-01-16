@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     type: "website",
     // url: "https://///",　ToDo
     title: " Message Recipe",
-    description: "Message Recipeは、HTMLのフォームに文章を入力するだけで、AngularやConventional Commitsといったフォーマットに合わせたメッセージを生成することができます。シンプルで分かりやすいインターフェースが、開発者にとって効率的なコミットメッセージの作成をサポートします。開発プロジェクトを効果的に進め、整理された履歴を維持するために、Message Recipeをぜひお試しください。",
+    description: "HTMLのフォームに文章を入力するだけで、AngularやConventional Commitsのルールに従ったコミットメッセージが生成されます。開発プロジェクトを効果的に進め、整理された履歴を維持するために、ぜひメッセージテンプレートサービスMessage Recipeをお試しください。",
     siteName: "Message Recipe ",
     images: [
       {

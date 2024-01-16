@@ -9,11 +9,11 @@ export const Footer = ({ addClass }: { addClass?: any }) => {
         <footer className={`flex justify-center ${addClass}`}>
             <div className="flex items-center ">
                 <div className="pr-8"> Copyright © 2023 nkita.</div>
-                <ExLink href="#" value={"Contact"} />
+                <ExLink href="https://forms.gle/EgZpkTKZdg5mbjzF7" value={"Contact"} />
                 /
-                <ExLink href="#" value={<FaGithub />} />
+                <ExLink href="https://github.com/nkita" value={<FaGithub />} />
                 /
-                <ExLink href="#" value={<FaXTwitter />} />
+                <ExLink href="https://twitter.com/nkitao7" value={<FaXTwitter />} />
             </div>
         </footer >
     )
