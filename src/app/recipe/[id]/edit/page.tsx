@@ -50,7 +50,11 @@ export default function Home() {
             } else if (inputElementName === "typeItem") {
               const ele = s[4]
               const idx = s[5]
-              i[inputElementName][idx][ele] = data[name]
+              if (`${i[inputElementName].length}` === idx) {
+                i[inputElementName].push({ [ele]: data[name] })
+              } else {
+                i[inputElementName][idx][ele] = data[name]
+              }
             } else {
               i[inputElementName] = data[name]
             }
@@ -127,6 +131,7 @@ export default function Home() {
                           type={i.type.label}
                           typeItem={i.typeItem}
                           register={register}
+                          setValue={setValue}
                           sort={idx} />
                       </div>
                       <div className='py-2'></div>

@@ -163,6 +163,7 @@ export const EditInputs = ({
     type,
     typeItem,
     register,
+    setValue,
 }: {
     id: string
     label: string
@@ -175,11 +176,17 @@ export const EditInputs = ({
     typeItem?: any,
     sort: number
     register: any
+    setValue: any
 }
 ) => {
     const [open, setOpen] = useState(true)
     const [items, setItems] = useState(typeItem ?? [])
-    const handleAddItem = () => setItems([...items, { label: "", description: "" }])
+    const handleAddItem = (id: string) => {
+        const l = `edit-input-${id}-typeItem-label-${items.length}`
+        const d = `edit-input-${id}-typeItem-description-${items.length}`
+        setValue(l, "")
+        setValue(d, "")
+    }
     return (
         <>
             <div className='flex justify-between'>
@@ -210,7 +217,7 @@ export const EditInputs = ({
                                 )
                             })
                         }
-                        <button onClick={handleAddItem} className='py-1 px-2 bg-blue-500 text-white rounded-lg'> + Add </button>
+                        <button onClick={e => handleAddItem(id)} className='py-1 px-2 bg-blue-500 text-white rounded-lg'> + Add </button>
                     </div>
                 }
                 <InputLine label="Label">
