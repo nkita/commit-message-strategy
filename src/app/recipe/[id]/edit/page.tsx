@@ -45,7 +45,15 @@ export default function Home() {
       if (type === "input") {
         template.input.map((i: any) => {
           if (i.id === inputId) {
-            i[inputElementName] = inputElementName === "type" ? { "label": data[name] } : data[name]
+            if (inputElementName === "type") {
+              i[inputElementName] = { "label": data[name] }
+            } else if (inputElementName === "typeItem") {
+              const ele = s[4]
+              const idx = s[5]
+              i[inputElementName][idx][ele] = data[name]
+            } else {
+              i[inputElementName] = data[name]
+            }
           }
           return i
         })

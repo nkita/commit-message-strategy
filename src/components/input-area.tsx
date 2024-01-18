@@ -179,6 +179,7 @@ export const EditInputs = ({
 ) => {
     const [open, setOpen] = useState(true)
     const [items, setItems] = useState(typeItem ?? [])
+    const handleAddItem = () => setItems([...items, { label: "", description: "" }])
     return (
         <>
             <div className='flex justify-between'>
@@ -195,16 +196,22 @@ export const EditInputs = ({
                     </select >
                 </InputLine>
                 {type === "select" && items &&
-                    items.map((i: any, index: number) => {
-                        return (
-                            <div key={i + index} className='pl-10'>
-                                <InputLine label="Select Item" >
-                                    <InputText id={`edit-input-${id}${index}-select-label`} placeholder='Write label' register={register} defaultValue={i.label} />
-                                    <InputText id={`edit-input-${id}${index}-select-description`} placeholder='Write description' register={register} defaultValue={i.description} />
-                                </InputLine>
-                            </div>
-                        )
-                    })
+                    <div className='pl-10'>
+                        Select Items
+                        {
+                            items.map((i: any, index: number) => {
+                                return (
+                                    <div key={i + index} className='p-1'>
+                                        <InputLine label={`# ${index + 1}`} >
+                                            <InputText id={`edit-input-${id}-typeItem-label-${index}`} placeholder='Write label' register={register} defaultValue={i.label} />
+                                            <InputText id={`edit-input-${id}-typeItem-description-${index}`} placeholder='Write description' register={register} defaultValue={i.description} />
+                                        </InputLine>
+                                    </div>
+                                )
+                            })
+                        }
+                        <button onClick={handleAddItem} className='py-1 px-2 bg-blue-500 text-white rounded-lg'> + Add </button>
+                    </div>
                 }
                 <InputLine label="Label">
                     <InputText id={`edit-input-${id}-label`} placeholder='Write Label' register={register} defaultValue={label} />
@@ -212,8 +219,8 @@ export const EditInputs = ({
                 <InputLine label="Required">
                     <CheckBox id={`edit-input-${id}-required`} register={register} defaultChecked={required} />
                 </InputLine>
-                {type === "input" || type === "textarea" &&
-                    < InputLine label="Max Count">
+                {(type === "input" || type === "textarea") &&
+                    <InputLine label="Max Count">
                         <InputText id={`edit-input-${id}-count`} type="number" placeholder='Write Count' register={register} defaultValue={count} />
                     </InputLine>
                 }

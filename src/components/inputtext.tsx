@@ -17,7 +17,7 @@ export const InputText = (
         placeholder?: string
         autoFocus?: boolean
         maxLength?: number
-        defaultValue?: string
+        defaultValue?: string | number
     }) => {
     const _n = !name ? id : name
     return (
