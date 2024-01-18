@@ -94,6 +94,7 @@ export default function Home() {
   return (
     <main className="flex pt-10 px-16 justify-center w-screen">
       <div className='w-full md:max-w-[1280px]'>
+        <button className='bg-gray-100 p-2 rounded-md leading-3' onClick={e => console.info(JSON.stringify(template))}>GetJson</button>
         <div className='md:flex gap-8 items-start pb-10'>
           <section className='justify-center md:w-6/12'>
             <InputLine label="Title" required={true} >
@@ -115,7 +116,8 @@ export default function Home() {
                           description={i.description}
                           target_value={i.target_value}
                           replace_format={i.replace_format}
-                          type={i.type}
+                          type={i.type.label}
+                          typeItem={i.typeItem}
                           register={register}
                           sort={idx} />
                       </div>
@@ -137,7 +139,7 @@ export default function Home() {
             <div className='bg-green-50 p-5 rounded-md'>
               <h1>Preview</h1>
               <TopArea template={template} />
-              <InputArea template={template} control={control} register={register} autoFocus={true} />
+              <InputArea template={template} control={control} register={register} autoFocus={true} watch={watch} />
               <ResultArea template={template} register={register} isEdit={true} />
             </div>
           </section>

@@ -155,24 +155,30 @@ export const EditInputs = ({
     id,
     label,
     required,
+    count = 100,
     description,
     target_value,
     replace_format,
     sort,
+    type,
+    typeItem,
     register,
 }: {
     id: string
     label: string
+    count?: number
     required: boolean
     description: string
     target_value: string
     replace_format: string
     type: 'select' | 'input' | 'textarea' | 'toggle'
+    typeItem?: any,
     sort: number
     register: any
 }
 ) => {
     const [open, setOpen] = useState(true)
+    const [items, setItems] = useState(typeItem ?? [])
     return (
         <>
             <div className='flex justify-between'>
@@ -180,20 +186,37 @@ export const EditInputs = ({
                 <button className='text-lg bg-gray-100 text-center px-2 rounded-lg  border border-gray-200 hover:border-gray-600 ' onClick={() => setOpen(!open)}>{open ? "-" : "+"}</button>
             </div>
             <div className={`${open ? '' : 'hidden'} ease-in`}>
-                <InputLine label="Please input type.">
-                    <select  {...register(`edit-input-${id}-type`)} placeholder='Select type' className='p-4 rounded-md w-full outline-none border focus:ring-1 border-gray-300 focus:ring-blue-300 focus:border-blue-300' >
+                <InputLine label="Input type.">
+                    <select  {...register(`edit-input-${id}-type`)} defaultValue={type} placeholder='Select type' className='p-4 rounded-md w-full outline-none border focus:ring-1 border-gray-300 focus:ring-blue-300 focus:border-blue-300' >
                         <option value="input">input</option>
                         <option value="select">select</option>
                         <option value="textarea">textarea</option>
                         <option value="toggle">switch</option>
                     </select >
                 </InputLine>
+                {type === "select" && items &&
+                    items.map((i: any, index: number) => {
+                        return (
+                            <div key={i + index} className='pl-10'>
+                                <InputLine label="Select Item" >
+                                    <InputText id={`edit-input-${id}${index}-select-label`} placeholder='Write label' register={register} defaultValue={i.label} />
+                                    <InputText id={`edit-input-${id}${index}-select-description`} placeholder='Write description' register={register} defaultValue={i.description} />
+                                </InputLine>
+                            </div>
+                        )
+                    })
+                }
                 <InputLine label="Label">
                     <InputText id={`edit-input-${id}-label`} placeholder='Write Label' register={register} defaultValue={label} />
                 </InputLine>
                 <InputLine label="Required">
                     <CheckBox id={`edit-input-${id}-required`} register={register} defaultChecked={required} />
                 </InputLine>
+                {type === "input" || type === "textarea" &&
+                    < InputLine label="Max Count">
+                        <InputText id={`edit-input-${id}-count`} type="number" placeholder='Write Count' register={register} defaultValue={count} />
+                    </InputLine>
+                }
                 <InputLine label="Description">
                     <TextArea id={`edit-input-${id}-description`} resize={true} rows={3} placeholder='Write Description' register={register} defaultValue={description} />
                 </InputLine>
@@ -203,7 +226,7 @@ export const EditInputs = ({
                 <InputLine label="Replace Value">
                     <TextArea id={`edit-input-${id}-replace_format`} resize={true} placeholder='Write Replace value.' register={register} defaultValue={replace_format} />
                 </InputLine>
-            </div>
+            </div >
         </>
     )
 }

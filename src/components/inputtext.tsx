@@ -2,6 +2,7 @@
 export const InputText = (
     {
         id,
+        type = "text",
         name,
         register,
         placeholder,
@@ -10,6 +11,7 @@ export const InputText = (
         defaultValue = "",
     }: {
         id: string
+        type?: string
         name?: string
         register: any
         placeholder?: string
@@ -20,7 +22,7 @@ export const InputText = (
     const _n = !name ? id : name
     return (
         <input
-            type="text"
+            type={type}
             autoFocus={autoFocus}
             name={_n}
             id={id}
