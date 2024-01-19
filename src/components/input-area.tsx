@@ -1,5 +1,6 @@
 import { Select, CheckBox, InputText, TextArea, View } from './'
 import { ReactNode, useState } from 'react'
+import { ChevronUpIcon, ChevronDownIcon } from '@heroicons/react/20/solid'
 
 export const TopArea = ({
     template,
@@ -8,7 +9,7 @@ export const TopArea = ({
 }) => {
     return (
         <div>
-            <h1 className='text-2xl py-4 text-center'>{template?.title}</h1>
+            <h1 className='text-2xl py-4 font-semibold text-center'>{template?.title}</h1>
             <div><View data={template?.description} /></div>
             <div className='flex py-2 justify-start text-sm text-red-500'>*required</div>
         </div>
@@ -52,9 +53,7 @@ export const InputArea = ({
                                     <TextArea id={i.id} register={register} rows={3} resize={true} placeholder={`Write a ${i.label}.`} maxLength={i.count} autoFocus={autoFocus ? idx === 0 : autoFocus} />
                                 }
                             </div>
-                            <div className='pb-4'>
-                                <View data={i.description} />
-                            </div>
+                            <Description description={i.description} />
                         </InputLine>
                     )
                 })
@@ -62,7 +61,29 @@ export const InputArea = ({
         </div>
     )
 }
+const Description = ({ description }: { description: any }) => {
+    const [isOpen, setOpen] = useState(false)
+    return (
+        <>
+            {description &&
+                <div className='relative border border-gray-100  p-3 mt-1 rounded-md bg-gray-50'>
+                    <div className={`${isOpen ? "h-full" : 'opacity-0 h-[0px] pointer-events-none'}  ease-in  duration-100`}>
+                        <View data={description} />
+                    </div>
+                    <div className='flex justify-center pt-2  text-sm w-full '>
+                        <div onClick={e => setOpen(!isOpen)} className='w-full'>
+                            <div className='flex py-1 cursor-pointer border border-gray-50 bg-white items-center justify-center hover:bg-sky-50 hover:border-sky-100 '>
+                                {!isOpen && <ChevronDownIcon className='w-[25px] h-[25]' />}
+                                {isOpen && <ChevronUpIcon className='w-[25px] h-[25]' />}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </>
 
+    )
+}
 export const ResultArea = ({
     template,
     register,
@@ -141,7 +162,7 @@ export const InputLine = ({
     return (
         <div className='w-full py-1 '>
             <div className='flex justify-between align-text-bottom'>
-                <div className={`pb-1 text-base ${required ? "text-red-500" : ""}`}>{`${label}${required ? "*" : ""}`}</div>
+                <div className={`pb-1 text-lg font-semibold ${required ? "text-red-500" : ""}`}>{`${label}${required ? "*" : ""}`}</div>
                 {countLimit &&
                     <div className='flex text-gray-500 justify-end text-xs items-end'>{count}/{countLimit}</div>
                 }
