@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .markdown {
-  @apply text-gray-600 leading-normal break-words text-base;
+  @apply text-gray-700 leading-6 break-words text-base;
 }
 
 .markdown>*+* {
@@ -11,7 +11,7 @@
 }
 
 .markdown li+li {
-  @apply mt-1;
+  @apply mt-1 py-1;
 }
 
 .markdown li>p+p {
@@ -59,11 +59,11 @@
 }
 
 .markdown code {
-  @apply font-mono text-sm inline bg-gray-200 rounded px-1 py-1 mx-1 my-1 overflow-scroll;
+  @apply font-mono text-xs inline text-gray-600 bg-gray-200 rounded px-1 py-1 overflow-scroll;
 }
 
 .markdown pre {
-  @apply bg-gray-100 rounded p-4;
+  @apply bg-gray-200 rounded p-4;
 }
 
 .markdown pre code {
