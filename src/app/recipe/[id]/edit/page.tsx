@@ -103,10 +103,13 @@ export default function Home() {
     template.input = inputs
     setTemplate({ ...template })
   }
+
+  const handleCopyBtn = async () => await navigator.clipboard.writeText(JSON.stringify(template))
+
   return (
     <main className="flex pt-10 px-16 justify-center w-screen">
       <div className='w-full md:max-w-[1280px]'>
-        <button className='bg-gray-100 p-2 rounded-md leading-3' onClick={e => console.info(JSON.stringify(template))}>GetJson</button>
+        <button className='bg-gray-100 p-2 rounded-md leading-3' onClick={handleCopyBtn}>GetJson</button>
         <div className='md:flex gap-8 items-start pb-10'>
           <section className='justify-center md:w-6/12'>
             <InputLine label="Title" required={true} >
