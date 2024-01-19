@@ -6,7 +6,7 @@ export const View = ({
     data: string
 }) => {
     return (
-        <div className='markdown'>
+        <div className='markdown '>
             <Markdown>{`${data}`}</Markdown>
         </div>
     )

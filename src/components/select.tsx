@@ -37,7 +37,7 @@ export const Select = ({
                     <Combobox value={value} onChange={onChange} nullable>
                         <div className="relative mt-1">
                             <div className="relative w-full">
-                                <Combobox.Input onBlur={onBlur} ref={ref} displayValue={(item: string) => item} onChange={(event) => setQuery(event.target.value)} maxLength={50} autoFocus={autoFocus} placeholder={placeholder} className="py-2 pl-3 pr-10  w-full leading-1  text-sm text-gray-900 bg-gray-50 outline-none border focus:ring-1 border-gray-300 focus:ring-blue-300 focus:border-blue-300 text-left rounded-md" />
+                                <Combobox.Input onBlur={onBlur} ref={ref} displayValue={(item: string) => item} onChange={(event) => setQuery(event.target.value)} maxLength={50} autoFocus={autoFocus} placeholder={placeholder} className="py-2 pl-3 pr-10  w-full leading-1  text-base text-gray-900 bg-sky-50 outline-none border focus:ring-1 border-gray-300 focus:ring-blue-300 focus:border-blue-300 text-left rounded-md" />
                                 <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
                                     <ChevronUpDownIcon
                                         className="h-5 w-5 text-gray-400"
@@ -57,10 +57,10 @@ export const Select = ({
                                             }`
                                         }>
 
-                                            <div className='text-sm font-bold'>
+                                            <div className='text-base font-bold'>
                                                 {item.label}
                                             </div>
-                                            <div className={'font-light text-sm'}>
+                                            <div className={'font-light text-base'}>
                                                 {item.description}
                                             </div>
                                         </Combobox.Option>
