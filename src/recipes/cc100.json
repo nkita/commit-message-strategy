@@ -1,24 +1,60 @@
 {
     "id": "cc1.0.0",
     "title": "Conventional Commits 1.0.0",
-    "description": "The Conventional Commits specification is a lightweight convention on top of commit messages. \n It provides an easy set of rules for creating an explicit commit history; which makes it easier to write automated tools on top of. This convention dovetails with SemVer, by describing the features, fixes, and breaking changes made in commit messages.please check [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) ",
+    "description": "The Conventional Commits specification is a lightweight convention on top of commit messages. \n It provides an easy set of rules for creating an explicit commit history; which makes it easier to write automated tools on top of. This convention dovetails with [SemVer](https://semver.org/), by describing the features, fixes, and breaking changes made in commit messages. \nPlease check 👉  [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) ",
     "input": [
         {
             "id": "type",
             "label": "Type",
             "required": true,
-            "description": "This is describe space.",
+            "description": "Types other than `fix:` and `feat:` are allowed, for example @commitlint/config-conventional  \nurl : https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional) (based on the Angular convention  \n recommends `build:`, `chore:`, `ci:`, `docs:`, `style:`, `refactor:`, `perf:`, `test:`, and others.  \n\n**How does Conventional Commits handle revert commits?**  \nConventional Commits does not make an explicit effort to define revert behavior. Instead we leave it to tooling authors to use the flexibility of types and footers to develop their logic for handling reverts.  \nOne recommendation is to use the revert type, and a footer that references the commit SHAs that are being reverted:  \n```\nrevert: let us never again speak of the noodle incident\n\nRefs: 676104e, a215868\n```",
             "type": {
                 "label": "select"
             },
             "typeItem": [
                 {
-                    "label": "fix",
-                    "description": "A commit of the type fix patches a bug in your codebase "
+                    "label": "build",
+                    "description": "Changes that affect the build system or external dependencies"
+                },
+                {
+                    "label": "chore",
+                    "description": "Changes to our CI configuration files and scripts"
+                },
+                {
+                    "label": "ci",
+                    "description": ""
+                },
+                {
+                    "label": "docs",
+                    "description": "Documentation only changes"
                 },
                 {
                     "label": "feat",
                     "description": "A commit of the type feat introduces a new feature to the codebase"
+                },
+                {
+                    "label": "fix",
+                    "description": "A commit of the type fix patches a bug in your codebase "
+                },
+                {
+                    "label": "perf",
+                    "description": "A code change that improves performance"
+                },
+                {
+                    "label": "refactor",
+                    "description": " A code change that neither fixes a bug nor adds a feature"
+                },
+                {
+                    "label": "revert",
+                    "description": "revert commits"
+                },
+                {
+                    "label": "style",
+                    "description": "Changes that do not affect the meaning of the code "
+                },
+                {
+                    "label": "test",
+                    "description": "Adding missing tests or correcting existing tests"
                 }
             ],
             "target_value": "<type>",
@@ -29,7 +65,7 @@
             "label": "Description",
             "required": true,
             "description": "This is describe space.",
-            "count": 100,
+            "count": "100",
             "type": {
                 "label": "input"
             },
@@ -41,13 +77,14 @@
             "id": "scope",
             "label": "Scope",
             "required": false,
-            "description": "A scope MUST consist of a noun describing a section of the codebase.",
+            "description": "A scope may be provided to a commit’s type, to provide additional contextual information and is contained within parenthesis, e.g., `feat(parser): add ability to parse arrays.`\n\n",
             "type": {
                 "label": "input"
             },
             "typeItem": [],
             "target_value": "[scope]",
-            "replace_format": "(${value})"
+            "replace_format": "(${value})",
+            "count": ""
         },
         {
             "id": "body",
@@ -77,7 +114,7 @@
             "id": "footer",
             "label": "Footer(s)",
             "required": false,
-            "description": "* Each footer MUST consist of a word token, followed by either a :<space> or <space># separator, followed by a string value. \n * A **footer’s** token MUST use - in place of whitespace characters, e.g., Acked-by (this helps differentiate the footer section from a multi-paragraph body). An exception is made for BREAKING CHANGE, which MAY also be used as a token. \n * A footer’s value MAY contain spaces and newlines, and parsing MUST terminate when the next valid footer token/separator pair is observed.",
+            "description": "* One or more footers MAY be provided one blank line after the body. Each footer MUST consist of a word token, followed by either a `:<space>` or `<space>#` separator, followed by a string value.\n\n * A footer’s token MUST use - in place of whitespace characters, e.g., `Acked-by` (this helps differentiate the footer section from a multi-paragraph body). An exception is made for `BREAKING CHANGE`, which MAY also be used as a token. \n * A footer’s value MAY contain spaces and newlines, and parsing MUST terminate when the next valid footer token/separator pair is observed.\n* If included in the type/scope prefix, breaking changes MUST be indicated by a `!` immediately before the `:`. If `!` is used, `BREAKING CHANGE:` MAY be omitted from the footer section, and the commit description SHALL be used to describe the breaking change.",
             "type": {
                 "label": "textarea"
             },
